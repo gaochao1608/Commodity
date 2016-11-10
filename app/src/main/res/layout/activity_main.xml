@@ -15,17 +15,16 @@
             android:background="#000000"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
-            <ImageView
+            <com.qf.administrator.commodity.CircleImageView
                 android:id="@+id/iv_head"
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_launcher"
+                android:scaleType="centerInside"
+                android:src="@mipmap/ic_user_photo_bg"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="?attr/actionBarSize" />
             <ImageView
                 android:id="@+id/iv_find"
-                android:layout_margin="10dp"
                 android:layout_alignParentRight="true"
-                android:src="@android:drawable/ic_search_category_default"
+                android:src="@mipmap/btn_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -45,17 +44,226 @@
             android:layout_height="match_parent">
         </android.support.v4.view.ViewPager>
     </RelativeLayout>
-    <RelativeLayout
+    <ScrollView
         android:clickable="true"
         android:background="#ffffff"
         android:layout_gravity="left"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent">
-        <ImageView
-            android:src="@mipmap/ic_launcher"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/big_map"
+                android:scaleType="fitXY"
+                android:src="@mipmap/drawer_header_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <com.qf.administrator.commodity.CircleImageView
+                android:id="@+id/bt_head"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="50dp"
+                android:src="@mipmap/ic_user_photo_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="点击头像登录"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="45dp"
+                android:layout_below="@+id/bt_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/ll_first"
+                android:orientation="vertical"
+                android:layout_below="@+id/big_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:text="    首页"
+                    android:id="@+id/bt_home"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="    消息"
+                    android:id="@+id/bt_message"
+                    android:paddingLeft="10dp"
+                    android:textSize="20sp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    </RelativeLayout>
+                <Button
+                    android:text="    订单"
+                    android:id="@+id/bt_order"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="    余额"
+                    android:id="@+id/bt_balance"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="    收货地址"
+                    android:id="@+id/bt_address"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_adress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:background="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_second"
+                android:orientation="vertical"
+                android:layout_below="@+id/ll_first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:text="    晒单"
+                    android:id="@+id/bt_camera"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="    评论"
+                    android:id="@+id/bt_comment"
+                    android:paddingLeft="10dp"
+                    android:textSize="20sp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:text="    收藏"
+                    android:id="@+id/bt_like"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_like"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="    关注"
+                    android:id="@+id/bt_follow"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_follow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="    粉丝"
+                    android:id="@+id/bt_fans"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:drawableLeft="@mipmap/drawer_fans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:background="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_below="@id/ll_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:text="推送"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="推送时间"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="联系客服"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="评分"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="积分"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="如何获得积分"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="版本更新"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bt_select"
+                    android:gravity="left|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </android.support.v4.widget.DrawerLayout>
