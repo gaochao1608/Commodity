@@ -20,6 +20,14 @@ public class BuyshowFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static BuyshowFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        BuyshowFragment fragment = new BuyshowFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
