@@ -21,7 +21,6 @@ public class FindFragment extends Fragment {
     private RecyclerView rlv;
     private MyAdapter adapter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
