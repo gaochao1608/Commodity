@@ -17,11 +17,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+
         initData();
         initAdapter();
     }
 
     private void initAdapter() {
+//        new MyAdapter();
 
     }
 
@@ -33,4 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
     }
+//    class MyAdapter extends RecyclerView.Adapter{
+//
+//    }
 }
