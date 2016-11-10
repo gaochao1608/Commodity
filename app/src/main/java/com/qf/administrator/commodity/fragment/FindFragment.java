@@ -19,6 +19,7 @@ import com.qf.administrator.commodity.R;
 public class FindFragment extends Fragment {
 
     private RecyclerView rlv;
+    private MyAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,5 +42,31 @@ public class FindFragment extends Fragment {
 
     private void initData() {
 
+    }
+
+    class MyAdapter extends RecyclerView.Adapter<MyAdapter.Myholder>{
+
+
+        @Override
+        public Myholder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return null;
+        }
+
+        @Override
+        public void onBindViewHolder(Myholder holder, int position) {
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
+        }
+
+        class Myholder extends RecyclerView.ViewHolder{
+
+            public Myholder(View itemView) {
+                super(itemView);
+            }
+        }
     }
 }
