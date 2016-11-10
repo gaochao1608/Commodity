@@ -1,7 +1,9 @@
-package com.qf.administrator.commodity;
+package com.qf.administrator.commodity.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.qf.administrator.commodity.R;
 
 public class MainActivity extends AppCompatActivity {
 
