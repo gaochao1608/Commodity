@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 
 import com.qf.administrator.commodity.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +23,7 @@ public class FindFragment extends Fragment {
 
     private RecyclerView rlv;
     private MyAdapter adapter;
+    private List<String> list =new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
