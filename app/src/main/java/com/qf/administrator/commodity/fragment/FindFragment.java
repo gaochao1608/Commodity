@@ -37,6 +37,8 @@ public class FindFragment extends Fragment {
     }
 
     private void initAdapter() {
+        adapter=new MyAdapter();
+        rlv.setAdapter(adapter);
 
     }
 
