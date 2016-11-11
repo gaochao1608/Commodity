@@ -17,7 +17,8 @@
             android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/img_firfrag_goods"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
             android:layout_height="150dp"/>
         <TextView
             android:id="@+id/txt_firfrag_goodsname"
@@ -57,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
+                android:textColor="#f00"
                 android:layout_alignTop="@id/txt_firfrag_after_price"
                 android:layout_alignBottom="@id/txt_firfrag_after_price"
                 android:layout_height="wrap_content"/>

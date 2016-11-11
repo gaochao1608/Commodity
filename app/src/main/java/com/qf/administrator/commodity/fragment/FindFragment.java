@@ -57,30 +57,36 @@ public class FindFragment extends Fragment {
         initData();
 
         initAdapter();
-        sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                sp.setRefreshing(true);
-//                //TODO  重新获取数据
-                list.clear();
-                pager=1;
-                initData();
-                adapter.notifyDataSetChanged();
-//                 //TODO 刷新完回到顶部
-                sp.setRefreshing(false);
-            }
-        });
+//        sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//            }
+//        });
         rlv.setOnScrollListener(new RecyclerView.OnScrollListener() {
             public int lastvisitemposition;
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState==RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition+1==adapter.getItemCount());
-                pager++;
-                initData();
-                adapter.notifyDataSetChanged();
+                if (newState==RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition+1==adapter.getItemCount()){
+                    pager++;
+                    initData();
+                    adapter.notifyDataSetChanged();
+                }
 
+                if (newState==RecyclerView.SCROLL_STATE_IDLE &&list.get(manager.findFirstVisibleItemPosition()).getId()==list.get(0).getId()){
+                    sp.setRefreshing(true);
+//                //TODO  重新获取数据
+                    list.clear();
+                    Log.i(TAG, "onRefresh: "+list);
+                    pager=1;
+                    initData();
+                    Log.i(TAG, "onRefresh: "+pager);
+                    adapter.notifyDataSetChanged();
+//                 //TODO 刷新完回到顶部
+                    sp.setRefreshing(false);
+                }
             }
 
             @Override
