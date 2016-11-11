@@ -7,13 +7,6 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-    <!--<com.handmark.pulltorefresh.library.PullToRefreshGridView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:id="@+id/ptrg"-->
-        <!--android:layout_height="match_parent">-->
-       <!---->
-
-    <!--</com.handmark.pulltorefresh.library.PullToRefreshGridView>-->
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="wrap_content"
         android:id="@+id/swiperefresh"
