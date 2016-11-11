@@ -2,6 +2,7 @@ package com.qf.administrator.commodity.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
+import com.qf.administrator.commodity.activity.GoodsListActivity;
 import com.qf.administrator.commodity.bean.CategoryAll;
 import com.qf.administrator.commodity.utils.OkHttpUtils;
 
@@ -33,6 +35,7 @@ public class CategoryFragment extends Fragment {
     private Context context;
     private MyAdapter adapter;
     private ArrayList<CategoryAll.DataBean.CategoryBean> list = new ArrayList<>();
+    private MyGridAdapter gridAdapter;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -72,12 +75,12 @@ public class CategoryFragment extends Fragment {
     private void initData() {
         OkHttpUtils.getInstances().getByEnqueue(getActivity(), url, CategoryAll.class,
                 new OkHttpUtils.GetTextCallback<CategoryAll>() {
-            @Override
-            public void getText(CategoryAll result) {
-                list.addAll(result.getData().getCategory());
-                adapter.notifyDataSetChanged();
-            }
-        });
+                    @Override
+                    public void getText(CategoryAll result) {
+                        list.addAll(result.getData().getCategory());
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
     }
 
@@ -91,14 +94,16 @@ public class CategoryFragment extends Fragment {
         public void onBindViewHolder(MyHolder holder, int position) {
             holder.cateText.setText(list.get(position).getCate_name());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.height = getResources().getDisplayMetrics().heightPixels/5;
+            params.height = getResources().getDisplayMetrics().heightPixels / 5;
             holder.cateBig.setLayoutParams(params);
             Glide.with(context).load(list.get(position).getPic_large()).into(holder.cateBig);
-            for (int i = 0; i < list.get(position).getSub().size(); i++) {
-                TextView tv = new TextView(context);
-                tv.setText(list.get(position).getSub().get(i).getCate_name());
+//            for (int i = 0; i < list.get(position).getSub().size(); i++) {
+//                TextView tv = new TextView(context);
+//                tv.setText(list.get(position).getSub().get(i).getCate_name());
 //                holder.cateGrid.addView(tv);
-            }
+//            }
+            gridAdapter = new MyGridAdapter(position);
+            holder.cateGrid.setAdapter(gridAdapter);
         }
 
         @Override
@@ -110,6 +115,7 @@ public class CategoryFragment extends Fragment {
             public ImageView cateBig;
             public TextView cateText;
             public GridView cateGrid;
+
             public MyHolder(View itemView) {
                 super(itemView);
                 this.cateBig = (ImageView) itemView.findViewById(R.id.cate_big);
@@ -118,12 +124,14 @@ public class CategoryFragment extends Fragment {
             }
         }
     }
-    class MyGridAdapter extends BaseAdapter{
+
+    class MyGridAdapter extends BaseAdapter {
         private int position;
 
-        public MyGridAdapter(int position){
+        public MyGridAdapter(int position) {
             this.position = position;
         }
+
         @Override
         public int getCount() {
             return list.get(position).getSub().size();
@@ -136,12 +144,41 @@ public class CategoryFragment extends Fragment {
 
         @Override
         public long getItemId(int i) {
-            return 0;
+            return i;
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            return null;
+        public View getView(final int i, View view, ViewGroup viewGroup) {
+            Holder holder;
+            if(view == null){
+                view = LayoutInflater.from(context).inflate(R.layout.item_text, null);
+                holder = new Holder(view);
+                view.setTag(holder);
+            }else{
+                holder = (Holder) view.getTag();
+            }
+            holder.itemText.setText(list.get(position).getSub().get(i).getCate_name());
+            holder.itemText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), GoodsListActivity.class);
+                    intent.putExtra("id",list.get(position).getSub().get(i).getCate_id());
+                    startActivity(intent);
+                }
+            });
+
+            return view;
+        }
+
+        public class Holder {
+            public View rootView;
+            public TextView itemText;
+
+            public Holder(View rootView) {
+                this.rootView = rootView;
+                this.itemText = (TextView) rootView.findViewById(R.id.item_text);
+            }
+
         }
     }
 }

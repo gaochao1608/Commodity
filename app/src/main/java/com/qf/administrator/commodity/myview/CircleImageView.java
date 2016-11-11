@@ -1,4 +1,4 @@
-package com.qf.administrator.commodity;
+package com.qf.administrator.commodity.myview;
 
 import android.content.Context;
 import android.graphics.Bitmap;

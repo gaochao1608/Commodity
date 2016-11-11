@@ -55,6 +55,7 @@
                 android:layout_height="1dp"/>
             <TextView
                 android:id="@+id/txt_firfrag_discount"
+                android:background="@drawable/shape_leaf"
                 android:layout_width="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
