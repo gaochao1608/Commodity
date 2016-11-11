@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <com.qf.administrator.commodity.CircleImageView
-                android:id="@+id/bt_head"
+                android:id="@+id/civ_head"
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="50dp"
                 android:src="@mipmap/ic_user_photo_bg"
@@ -68,9 +68,10 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="点击头像登录"
+                android:id="@+id/tv_click"
                 android:textColor="#ffffff"
                 android:layout_marginLeft="45dp"
-                android:layout_below="@+id/bt_head"
+                android:layout_below="@+id/civ_head"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <LinearLayout
@@ -202,24 +203,57 @@
                 android:layout_below="@id/ll_second"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <Button
-                    android:text="推送"
-                    android:textSize="20sp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/bt_select"
-                    android:gravity="left|center_vertical"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <Button
-                    android:text="推送时间"
-                    android:textSize="20sp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/bt_select"
-                    android:gravity="left|center_vertical"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:text="推送"
+                        android:id="@+id/bt_push"
+                        android:textSize="20sp"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/bt_select"
+                        android:gravity="left|center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <Switch
+                        android:layout_centerVertical="true"
+                        android:id="@+id/bt_switch"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:text="推送时间"
+                        android:id="@+id/bt_push_time"
+                        android:textSize="20sp"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/bt_select"
+                        android:gravity="left|center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/start_time"
+                        android:text="8:00"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/end_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/end_time"
+                        android:text="20:00"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
                 <Button
                     android:text="联系客服"
+                    android:id="@+id/bt_context"
                     android:textSize="20sp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/bt_select"
@@ -228,6 +262,7 @@
                     android:layout_height="wrap_content" />
                 <Button
                     android:text="评分"
+                    android:id="@+id/bt_mark"
                     android:textSize="20sp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/bt_select"
@@ -236,6 +271,7 @@
                     android:layout_height="wrap_content" />
                 <Button
                     android:text="积分"
+                    android:id="@+id/bt_point"
                     android:textSize="20sp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/bt_select"
@@ -245,6 +281,7 @@
                 <Button
                     android:text="如何获得积分"
                     android:textSize="20sp"
+                    android:id="@+id/bt_get_point"
                     android:paddingLeft="10dp"
                     android:background="@drawable/bt_select"
                     android:gravity="left|center_vertical"
@@ -252,6 +289,7 @@
                     android:layout_height="wrap_content" />
                 <Button
                     android:text="版本更新"
+                    android:id="@+id/bt_version"
                     android:textSize="20sp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/bt_select"
