@@ -144,6 +144,7 @@
         <meta-data android:name="JPUSH_APPKEY" android:value="3cbe84fe0f3fab5978b61aa2"/>
         <activity
             android:name=".activity.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -180,6 +181,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.GoodsInfoActivity"
+                  android:theme="@style/GcStyle"
+            >
         </activity>
         <activity
             android:name=".activity.LoginActivity"

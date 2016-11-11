@@ -1,6 +1,8 @@
 package com.qf.administrator.commodity.fragment;
 
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,9 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
+import com.qf.administrator.commodity.activity.GoodsInfoActivity;
 import com.qf.administrator.commodity.bean.firstfrag_goods_bean;
 import com.qf.administrator.commodity.utils.OkHttpUtils;
 
@@ -62,24 +66,29 @@ public class FindFragment extends Fragment {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                sp.setColorSchemeColors(Color.RED,Color.GREEN,Color.BLUE);
                 if (newState==RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition+1==adapter.getItemCount()){
                     pager++;
                     initData();
                     adapter.notifyDataSetChanged();
                 }
-
-                if (newState==RecyclerView.SCROLL_STATE_IDLE &&list.get(manager.findFirstVisibleItemPosition()).getId()==list.get(0).getId()){
-                    sp.setRefreshing(true);
-//                //TODO  重新获取数据
-                    list.clear();
-                    Log.i(TAG, "onRefresh: "+list);
-                    pager=1;
-                    initData();
-                    Log.i(TAG, "onRefresh: "+pager);
-                    adapter.notifyDataSetChanged();
-//                 //TODO 刷新完回到顶部
+                if (list.size()==0){
+                    Toast.makeText(getContext(), "网络无连接", Toast.LENGTH_SHORT).show();
                     sp.setRefreshing(false);
+                }else {
+                    if (newState==RecyclerView.SCROLL_STATE_IDLE &&list.get(manager.findFirstVisibleItemPosition()).getId()==list.get(0).getId()){
+                        sp.setRefreshing(true);
+                        list.clear();
+                        Log.i(TAG, "onRefresh: "+list);
+                        pager=1;
+                        initData();
+                        Log.i(TAG, "onRefresh: "+pager);
+                        adapter.notifyDataSetChanged();
+                        sp.setRefreshing(false);
+                    }
+
                 }
+
             }
 
             @Override
@@ -129,13 +138,21 @@ public class FindFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(Myholder holder, int position) {
+        public void onBindViewHolder(Myholder holder, final int position) {
             holder.txt_goodsname.setText(list.get(position).getTitle());
             holder.txt_after_price.setText(list.get(position).getCurrency()+list.get(position).getPrice());
             holder.txt_before_price.setText(list.get(position).getCurrency()+list.get(position).getLabelPrice());
             holder.txt_discount.setText(list.get(position).getDiscount());
             holder.txt_cate_name.setText(list.get(position).getCate_name());
             Glide.with(getActivity()).load(list.get(position).getImgUrl()).into(holder.img_firfrag_goods);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent =new Intent(getContext(),GoodsInfoActivity.class);
+                    intent.putExtra("id",list.get(position).getId());
+                    startActivity(intent);
+                }
+            });
 
         }
 
