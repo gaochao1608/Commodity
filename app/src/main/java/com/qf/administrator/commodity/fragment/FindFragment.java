@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.qf.administrator.commodity.R;
 import com.qf.administrator.commodity.bean.firstfrag_goods_bean;
 import com.qf.administrator.commodity.utils.OkHttpUtils;
@@ -27,7 +26,6 @@ public class FindFragment extends Fragment {
 
     private RecyclerView rlv;
     private SwipeRefreshLayout sp;
-    private PullToRefreshGridView ptrg;
     private MyAdapter adapter;
     private ArrayList<firstfrag_goods_bean.ItemsBean.DataBean> list=new ArrayList<>();
     private String url="http://api.danpin.com/index.php?controller=home&action=main&category=&page=";
@@ -57,12 +55,7 @@ public class FindFragment extends Fragment {
         initData();
 
         initAdapter();
-//        sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//
-//            }
-//        });
+
         rlv.setOnScrollListener(new RecyclerView.OnScrollListener() {
             public int lastvisitemposition;
 
@@ -95,38 +88,11 @@ public class FindFragment extends Fragment {
                 lastvisitemposition=manager.findLastVisibleItemPosition();
             }
         });
-//        ptrg.setMode(PullToRefreshBase.Mode.BOTH);
-//        ptrg.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<GridView>() {
-//            @Override
-//            public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
-//
-//            }
-//
-//            @Override
-//            public void onPullUpToRefresh(PullToRefreshBase<GridView> refreshView) {
-////                for (int i = 2; i <2000 ; i++) {
-////                    OkHttpUtils.getInstances().getByEnqueue(getActivity(),url+i,firstfrag_goods_bean.class,new OkHttpUtils.GetTextCallback<firstfrag_goods_bean>(){
-////                        @Override
-////                        public void getText(firstfrag_goods_bean result) {
-////                            for (int j = 0; j < 9; j++) {
-////                                list.addAll(result.getItems().get(j).getData());
-////
-////                            }
-////                        }
-////                    });
-////                    adapter.notifyDataSetChanged();
-////                    ptrg.onRefreshComplete();
-////                }
-//
-//
-//            }
-//        });
     }
 
     private void initView(View view) {
         rlv= (RecyclerView) view.findViewById(R.id.rlv_firstfrag);
         sp = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
-//        ptrg= (PullToRefreshGridView) view.findViewById(R.id.ptrg);
 
     }
 
