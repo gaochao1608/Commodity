@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
@@ -41,41 +40,35 @@ public class GoodsListActivity extends Activity {
         initView();
         initData();
         initAdapter();
+        sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                list.clear();
+                Log.i(TAG, "onRefresh: " + list);
+                pager = 1;
+                initData();
+                Log.i(TAG, "onRefresh: " + pager);
+                adapter.notifyDataSetChanged();
+                sp.setRefreshing(false);
+            }
+        });
+
         rlv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             public int lastvisitemposition;
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                sp.setColorSchemeColors(Color.RED,Color.GREEN,Color.BLUE);
-                if (newState==RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition+1==adapter.getItemCount()){
+                sp.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition + 1 == adapter.getItemCount()) {
                     pager++;
                     initData();
                     adapter.notifyDataSetChanged();
                 }
-                if (list.size()==0){
-                    Toast.makeText(GoodsListActivity.this, "网络无连接", Toast.LENGTH_SHORT).show();
-                    sp.setRefreshing(false);
-                }else {
-                    if (newState==RecyclerView.SCROLL_STATE_IDLE &&list.get(manager.findFirstVisibleItemPosition()).getId()==list.get(0).getId()){
-                        sp.setRefreshing(true);
-                        list.clear();
-                        Log.i(TAG, "onRefresh: "+list);
-                        pager=1;
-                        initData();
-                        Log.i(TAG, "onRefresh: "+pager);
-                        adapter.notifyDataSetChanged();
-                        sp.setRefreshing(false);
-                    }
-
-                }
-
             }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                lastvisitemposition=manager.findLastVisibleItemPosition();
+                lastvisitemposition = manager.findLastVisibleItemPosition();
             }
         });
     }

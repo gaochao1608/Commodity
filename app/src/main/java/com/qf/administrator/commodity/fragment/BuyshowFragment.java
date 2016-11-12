@@ -17,7 +17,6 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
@@ -67,6 +66,17 @@ public class BuyShowFragment extends Fragment {
         sp = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
         initData();
         initAdapter();
+        sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                list.clear();
+                pager = 1;
+                initData();
+                adapter.notifyDataSetChanged();
+                sp.setRefreshing(false);
+            }
+        });
+
         rlv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             public int lastvisitemposition;
 
@@ -74,26 +84,11 @@ public class BuyShowFragment extends Fragment {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 sp.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition== adapter.getItemCount()) {
-                    pager += 20;
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition + 1 == adapter.getItemCount()) {
+                    pager++;
                     initData();
                     adapter.notifyDataSetChanged();
                 }
-                if (list.size() == 0) {
-                    Toast.makeText(getContext(), "网络无连接", Toast.LENGTH_SHORT).show();
-                    sp.setRefreshing(false);
-                } else {
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE && list.get(manager.findFirstVisibleItemPosition()).getId() == list.get(0).getId()) {
-                        sp.setRefreshing(true);
-                        list.clear();
-                        pager = 20;
-                        initData();
-                        adapter.notifyDataSetChanged();
-                        sp.setRefreshing(false);
-                    }
-
-                }
-
             }
 
             @Override
@@ -115,12 +110,12 @@ public class BuyShowFragment extends Fragment {
     private void initData() {
         OkHttpUtils.getInstances().getByEnqueue(getActivity(), url + pager, BuyShowBean.class,
                 new OkHttpUtils.GetTextCallback<BuyShowBean>() {
-            @Override
-            public void getText(BuyShowBean result) {
-                list.addAll(result.getObjects());
-                adapter.notifyDataSetChanged();
-            }
-        });
+                    @Override
+                    public void getText(BuyShowBean result) {
+                        list.addAll(result.getObjects());
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
     }
 
@@ -131,7 +126,7 @@ public class BuyShowFragment extends Fragment {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(getActivity(),BuyShowActivity.class));
+                    startActivity(new Intent(getActivity(), BuyShowActivity.class));
                 }
             });
             return new MyHolder(view);
@@ -168,6 +163,7 @@ public class BuyShowFragment extends Fragment {
             public TextView tvOptionContent;
             public GridView gridImage;
             public TextView tvTime;
+
             public MyHolder(View itemView) {
                 super(itemView);
                 this.rootView = itemView;
@@ -186,11 +182,14 @@ public class BuyShowFragment extends Fragment {
         }
 
     }
-    class GridAdapter extends BaseAdapter{
+
+    class GridAdapter extends BaseAdapter {
         private int position;
-        public GridAdapter(int position){
+
+        public GridAdapter(int position) {
             this.position = position;
         }
+
         @Override
         public int getCount() {
             return list.get(position).getContent().getImages().size();
@@ -209,17 +208,18 @@ public class BuyShowFragment extends Fragment {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             Holder holder;
-            if(view == null){
-                view = LayoutInflater.from(context).inflate(R.layout.item_image,null);
+            if (view == null) {
+                view = LayoutInflater.from(context).inflate(R.layout.item_image, null);
                 holder = new Holder(view);
                 view.setTag(holder);
-            }else {
+            } else {
                 holder = (Holder) view.getTag();
             }
             Glide.with(context).load(list.get(position).getContent().getImages().get(i).getSmall()).into(holder.image);
             return view;
         }
     }
+
     public class Holder {
         public View rootView;
         public ImageView image;
