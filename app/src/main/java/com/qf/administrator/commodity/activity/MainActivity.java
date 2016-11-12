@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import com.qf.administrator.commodity.myview.CircleImageView;
 import com.qf.administrator.commodity.R;
-import com.qf.administrator.commodity.fragment.BuyshowFragment;
+import com.qf.administrator.commodity.fragment.BuyShowFragment;
 import com.qf.administrator.commodity.fragment.CategoryFragment;
 import com.qf.administrator.commodity.fragment.FindFragment;
 import com.qf.administrator.commodity.fragment.RecommendFragment;
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initData() {
         list.add(FindFragment.newInstance());
         list.add(RecommendFragment.newInstance());
-        list.add(BuyshowFragment.newInstance());
+        list.add(BuyShowFragment.newInstance());
         list.add(CategoryFragment.newInstance());
     }
 

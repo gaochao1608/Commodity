@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="5dp"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_launcher"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/iv_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/iv_head"
+        android:layout_below="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="+关注"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:id="@+id/bt_attention"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/shape_stroke_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="优点"
+        android:id="@+id/tv_good"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/iv_head"
+        android:layout_toRightOf="@+id/iv_head"
+        android:background="#000"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="优点"
+        android:layout_margin="10dp"
+        android:id="@+id/tv_good_content"
+        android:layout_below="@+id/iv_head"
+        android:layout_toRightOf="@+id/tv_good"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="缺点"
+        android:id="@+id/tv_bad"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/tv_good"
+        android:layout_toRightOf="@+id/iv_head"
+        android:background="#000"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="缺点"
+        android:layout_margin="10dp"
+        android:id="@+id/tv_bad_content"
+        android:layout_below="@+id/tv_good"
+        android:layout_toRightOf="@+id/tv_bad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="心得"
+        android:id="@+id/tv_option"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/tv_bad"
+        android:layout_toRightOf="@+id/iv_head"
+        android:background="#000"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="心得"
+        android:singleLine="true"
+        android:layout_margin="10dp"
+        android:id="@+id/tv_option_content"
+        android:layout_below="@+id/tv_bad"
+        android:layout_toRightOf="@+id/tv_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.qf.administrator.commodity.myview.MyGridView
+        android:id="@+id/grid_image"
+        android:layout_below="@+id/tv_option"
+        android:layout_toRightOf="@+id/iv_head"
+        android:numColumns="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.qf.administrator.commodity.myview.MyGridView>
+    <TextView
+        android:layout_margin="10dp"
+        android:id="@+id/tv_time"
+        android:layout_below="@+id/grid_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:background="#000"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</RelativeLayout>
