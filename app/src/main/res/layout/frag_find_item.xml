@@ -60,6 +60,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:textColor="#f00"
+                android:padding="5dp"
                 android:layout_alignTop="@id/txt_firfrag_after_price"
                 android:layout_alignBottom="@id/txt_firfrag_after_price"
                 android:layout_height="wrap_content"/>

@@ -2,6 +2,7 @@ package com.qf.administrator.commodity.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
+import com.qf.administrator.commodity.activity.BuyShowActivity;
 import com.qf.administrator.commodity.bean.BuyShowBean;
 import com.qf.administrator.commodity.utils.OkHttpUtils;
 
@@ -125,7 +127,14 @@ public class BuyShowFragment extends Fragment {
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
         @Override
         public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MyHolder(LayoutInflater.from(context).inflate(R.layout.item_buy_show, null));
+            View view = LayoutInflater.from(context).inflate(R.layout.item_buy_show, null);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getActivity(),BuyShowActivity.class));
+                }
+            });
+            return new MyHolder(view);
         }
 
         @Override
