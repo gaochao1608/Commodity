@@ -6,7 +6,7 @@ import java.util.List;
  * Created by 高超 on 2016/11/10.
  */
 
-public class firstfrag_goods_bean {
+public class Firstfragment_goods_bean {
 
     /**
      * code : 1

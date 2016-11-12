@@ -71,6 +71,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:text="来自"
+                android:id="@+id/txt_comefrom"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/txt_firfrag_cate_name"
@@ -79,6 +80,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:text="类标签"
+                android:id="@+id/txt_baioqian"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>

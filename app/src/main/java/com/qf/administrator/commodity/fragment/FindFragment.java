@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
 import com.qf.administrator.commodity.activity.GoodsInfoActivity;
-import com.qf.administrator.commodity.bean.firstfrag_goods_bean;
+import com.qf.administrator.commodity.bean.Firstfragment_goods_bean;
 import com.qf.administrator.commodity.utils.OkHttpUtils;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class FindFragment extends Fragment {
     private RecyclerView rlv;
     private SwipeRefreshLayout sp;
     private MyAdapter adapter;
-    private ArrayList<firstfrag_goods_bean.ItemsBean.DataBean> list=new ArrayList<>();
+    private ArrayList<Firstfragment_goods_bean.ItemsBean.DataBean> list=new ArrayList<>();
     private String url="http://api.danpin.com/index.php?controller=home&action=main&category=&page=";
     private static final String TAG = "tmd";
     private GridLayoutManager manager;
@@ -60,7 +60,7 @@ public class FindFragment extends Fragment {
 
         initAdapter();
 
-        rlv.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        rlv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             public int lastvisitemposition;
 
             @Override
@@ -77,14 +77,19 @@ public class FindFragment extends Fragment {
                     sp.setRefreshing(false);
                 }else {
                     if (newState==RecyclerView.SCROLL_STATE_IDLE &&list.get(manager.findFirstVisibleItemPosition()).getId()==list.get(0).getId()){
-                        sp.setRefreshing(true);
-                        list.clear();
-                        Log.i(TAG, "onRefresh: "+list);
-                        pager=1;
-                        initData();
-                        Log.i(TAG, "onRefresh: "+pager);
-                        adapter.notifyDataSetChanged();
-                        sp.setRefreshing(false);
+                      sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                          @Override
+                          public void onRefresh() {
+                              sp.setRefreshing(true);
+                              list.clear();
+                              Log.i(TAG, "onRefresh: "+list);
+                              pager=1;
+                              initData();
+                              Log.i(TAG, "onRefresh: "+pager);
+                              adapter.notifyDataSetChanged();
+                              sp.setRefreshing(false);
+                          }
+                      });
                     }
 
                 }
@@ -115,9 +120,9 @@ public class FindFragment extends Fragment {
 
     private void initData() {
         Log.i(TAG, "initData: ++++++++++");
-        OkHttpUtils.getInstances().getByEnqueue(getActivity(),url+pager,firstfrag_goods_bean.class,new OkHttpUtils.GetTextCallback<firstfrag_goods_bean>(){
+        OkHttpUtils.getInstances().getByEnqueue(getActivity(),url+pager,Firstfragment_goods_bean.class,new OkHttpUtils.GetTextCallback<Firstfragment_goods_bean>(){
             @Override
-            public void getText(firstfrag_goods_bean result) {
+            public void getText(Firstfragment_goods_bean result) {
                 for (int i = 0; i < 9; i++) {
                     list.addAll(result.getItems().get(i).getData());
                     Log.i(TAG, "getText: "+list);
