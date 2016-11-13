@@ -88,12 +88,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService"/>
-
                 <category android:name="com.qf.administrator.commodity"/>
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.DaemonService" />
-
-                <category android:name="com.qf.administrator.commodity" />
             </intent-filter>
         </service>
 
@@ -252,10 +247,6 @@
             android:name=".activity.GoodsInfoActivity"
             android:theme="@style/GcStyle" />
         <activity
-            android:name=".activity.GoodsInfoActivity"
-            android:theme="@style/GcStyle">
-        </activity>
-        <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".activity.PointActivity"/>
@@ -264,18 +255,11 @@
             android:name=".activity.EmptyActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".activity.MoreGoodsActivity"
-                  android:theme="@style/GcStyle"
-            >
-
+                  android:theme="@style/GcStyle">
         </activity>
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".activity.PointActivity" />
-        <activity android:name=".activity.RegisterActivity" />
-        <activity
-            android:name=".activity.EmptyActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activity.GoodsListActivity" />
-        <activity android:name=".activity.BuyShowActivity"></activity>
+        <activity android:name=".activity.BuyShowActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"></activity>
     </application>
 
 </manifest>

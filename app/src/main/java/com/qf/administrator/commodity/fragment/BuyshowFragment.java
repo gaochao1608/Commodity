@@ -10,11 +10,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
 import com.qf.administrator.commodity.activity.BuyShowActivity;
 import com.qf.administrator.commodity.bean.BuyShowBean;
+import com.qf.administrator.commodity.myview.MyGridView;
 import com.qf.administrator.commodity.utils.OkHttpUtils;
 
 import java.util.ArrayList;
@@ -120,13 +122,17 @@ public class BuyShowFragment extends Fragment {
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
+
         @Override
         public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(context).inflate(R.layout.item_buy_show, null);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(getActivity(), BuyShowActivity.class));
+                    Intent intent = new Intent(getActivity(), BuyShowActivity.class);
+                    Log.i("tmd", "onClick: "+view.getTag()+list.get((Integer) view.getTag()));
+                    intent.putExtra("obj",list.get((Integer) view.getTag()));
+                    startActivity(intent);
                 }
             });
             return new MyHolder(view);
@@ -136,13 +142,15 @@ public class BuyShowFragment extends Fragment {
         public void onBindViewHolder(MyHolder holder, int position) {
             Glide.with(context).load(list.get(position).getUser().getAvatar()).into(holder.ivHead);
             holder.tvName.setText(list.get(position).getUser().getUsername());
-//            holder.tvMoney.setText(list.get(position).getUser().getTotal_price());
+            holder.tvMoney.setText("已认证购物金额" + list.get(position).getUser().getTotal_price() + "元");
             holder.tvGoodContent.setText(list.get(position).getContent().getGood());
             holder.tvBadContent.setText(list.get(position).getContent().getBad());
             holder.tvOptionContent.setText(list.get(position).getContent().getOption());
             holder.tvTime.setText(list.get(position).getNaturaltime());
             GridAdapter gridAdapter = new GridAdapter(position);
             holder.gridImage.setAdapter(gridAdapter);
+            holder.tvComment.setText(" "+list.get(position).getComment_count());
+            holder.itemView.setTag(position);
         }
 
         @Override
@@ -155,14 +163,19 @@ public class BuyShowFragment extends Fragment {
             public ImageView ivHead;
             public TextView tvName;
             public TextView tvMoney;
+            public Button btAttention;
             public TextView tvGood;
             public TextView tvGoodContent;
             public TextView tvBad;
             public TextView tvBadContent;
             public TextView tvOption;
             public TextView tvOptionContent;
-            public GridView gridImage;
+            public MyGridView gridImage;
             public TextView tvTime;
+            public TextView tvUp;
+            public TextView tvDown;
+            public TextView tvComment;
+            public TextView tvCollect;
 
             public MyHolder(View itemView) {
                 super(itemView);
@@ -170,16 +183,22 @@ public class BuyShowFragment extends Fragment {
                 this.ivHead = (ImageView) rootView.findViewById(R.id.iv_head);
                 this.tvName = (TextView) rootView.findViewById(R.id.tv_name);
                 this.tvMoney = (TextView) rootView.findViewById(R.id.tv_money);
+                this.btAttention = (Button) rootView.findViewById(R.id.bt_attention);
                 this.tvGood = (TextView) rootView.findViewById(R.id.tv_good);
                 this.tvGoodContent = (TextView) rootView.findViewById(R.id.tv_good_content);
                 this.tvBad = (TextView) rootView.findViewById(R.id.tv_bad);
                 this.tvBadContent = (TextView) rootView.findViewById(R.id.tv_bad_content);
                 this.tvOption = (TextView) rootView.findViewById(R.id.tv_option);
                 this.tvOptionContent = (TextView) rootView.findViewById(R.id.tv_option_content);
-                this.gridImage = (GridView) rootView.findViewById(R.id.grid_image);
+                this.gridImage = (MyGridView) rootView.findViewById(R.id.grid_image);
                 this.tvTime = (TextView) rootView.findViewById(R.id.tv_time);
+                this.tvUp = (TextView) rootView.findViewById(R.id.tv_up);
+                this.tvDown = (TextView) rootView.findViewById(R.id.tv_down);
+                this.tvComment = (TextView) rootView.findViewById(R.id.tv_comment);
+                this.tvCollect = (TextView) rootView.findViewById(R.id.tv_collect);
             }
         }
+
 
     }
 

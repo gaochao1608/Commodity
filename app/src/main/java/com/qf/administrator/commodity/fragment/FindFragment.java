@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
@@ -32,8 +33,6 @@ public class FindFragment extends Fragment {
     private MyAdapter adapter;
     private ArrayList<Firstfragment_goods_bean.ItemsBean.DataBean> list=new ArrayList<>();
     private String url="http://api.danpin.com/index.php?controller=home&action=main&category=&page=";
-    private ArrayList<firstfrag_goods_bean.ItemsBean.DataBean> list = new ArrayList<>();
-    private String url = "http://api.danpin.com/index.php?controller=home&action=main&category=&page=";
     private static final String TAG = "tmd";
     private GridLayoutManager manager;
     private int pager = 1;
@@ -131,7 +130,6 @@ public class FindFragment extends Fragment {
 
     private void initData() {
         Log.i(TAG, "initData: ++++++++++");
-        OkHttpUtils.getInstances().getByEnqueue(getActivity(), url + pager, firstfrag_goods_bean.class, new OkHttpUtils.GetTextCallback<firstfrag_goods_bean>() {
         OkHttpUtils.getInstances().getByEnqueue(getActivity(),url+pager,Firstfragment_goods_bean.class,new OkHttpUtils.GetTextCallback<Firstfragment_goods_bean>(){
             @Override
             public void getText(Firstfragment_goods_bean result) {
