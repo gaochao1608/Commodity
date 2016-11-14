@@ -33,6 +33,8 @@ public class FindFragment extends Fragment {
     private MyAdapter adapter;
     private ArrayList<Firstfragment_goods_bean.ItemsBean.DataBean> list = new ArrayList<>();
     private String url = "http://api.danpin.com/index.php?controller=home&action=main&category=&page=";
+    private ArrayList<Firstfragment_goods_bean.ItemsBean.DataBean> list=new ArrayList<>();
+    private String url="http://api.danpin.com/index.php?controller=home&action=main&category=&page=";
     private static final String TAG = "tmd";
     private GridLayoutManager manager;
     private int pager = 1;
@@ -83,9 +85,30 @@ public class FindFragment extends Fragment {
                     initData();
                     adapter.notifyDataSetChanged();
                 }
+<<<<<<< Temporary merge branch 1
+=======
                 if (list.size()==0){
                     Toast.makeText(getContext(), "网络无连接", Toast.LENGTH_SHORT).show();
                     sp.setRefreshing(false);
+                }else {
+                    if (newState==RecyclerView.SCROLL_STATE_IDLE &&list.get(manager.findFirstVisibleItemPosition()).getId()==list.get(0).getId()){
+                      sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                          @Override
+                          public void onRefresh() {
+                              sp.setRefreshing(true);
+                              list.clear();
+                              Log.i(TAG, "onRefresh: "+list);
+                              pager=1;
+                              initData();
+                              Log.i(TAG, "onRefresh: "+pager);
+                              adapter.notifyDataSetChanged();
+                              sp.setRefreshing(false);
+                          }
+                      });
+                    }
+
+                }
+
                 }
 
 

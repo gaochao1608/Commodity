@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by Administrator on 16/11/12.
  */
 
-public class BuyShowBean {
+public class BuyShowBean implements Serializable{
 
     /**
      * agree_count : 23
@@ -98,7 +99,7 @@ public class BuyShowBean {
         this.objects = objects;
     }
 
-    public static class ObjectsBean {
+    public static class ObjectsBean implements Serializable{
         /**
          * bad : 价格比以往的专辑都高
          * good : 制作精美，以立体书的效果呈现出专辑主题，复古风格浓郁。
@@ -109,6 +110,16 @@ public class BuyShowBean {
          */
 
         private ContentBean content;
+
+        public String getComment_count() {
+            return comment_count;
+        }
+
+        public void setComment_count(String comment_count) {
+            this.comment_count = comment_count;
+        }
+
+        private String comment_count;
         private int id;
         private String naturaltime;
         /**
@@ -198,7 +209,7 @@ public class BuyShowBean {
             this.user = user;
         }
 
-        public static class ContentBean {
+        public static class ContentBean implements Serializable{
             private String bad;
             private String good;
             private String option;
@@ -290,7 +301,7 @@ public class BuyShowBean {
                 this.images = images;
             }
 
-            public static class ImagesBean {
+            public static class ImagesBean implements Serializable{
                 private String big;
                 private String small;
 
@@ -356,7 +367,7 @@ public class BuyShowBean {
             }
         }
 
-        public static class UserBean {
+        public static class UserBean implements Serializable{
             private String avatar;
             private int total_price;
             private String username;

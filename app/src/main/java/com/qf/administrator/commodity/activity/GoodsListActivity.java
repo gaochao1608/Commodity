@@ -1,6 +1,7 @@
 package com.qf.administrator.commodity.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -101,16 +102,16 @@ public class GoodsListActivity extends Activity {
         });
 
     }
-    class MyAdapter extends RecyclerView.Adapter<MyAdapter.Myholder>{
+    class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
 
 
         @Override
-        public MyAdapter.Myholder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MyAdapter.Myholder(LayoutInflater.from(GoodsListActivity.this).inflate(R.layout.frag_find_item,parent,false));
+        public MyAdapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new MyAdapter.MyHolder(LayoutInflater.from(GoodsListActivity.this).inflate(R.layout.frag_find_item,parent,false));
         }
 
         @Override
-        public void onBindViewHolder(MyAdapter.Myholder holder, final int position) {
+        public void onBindViewHolder(MyAdapter.MyHolder holder, final int position) {
             holder.txt_goodsname.setText(list.get(position).getTitle());
             holder.txt_after_price.setText(list.get(position).getCurrency()+list.get(position).getPrice());
             holder.txt_before_price.setText(list.get(position).getCurrency()+list.get(position).getLabelPrice());
@@ -120,9 +121,9 @@ public class GoodsListActivity extends Activity {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent =new Intent(GoodsListActivity.this,GoodsInfoActivity.class);
-//                    intent.putExtra("id",list.get(position).getId());
-//                    startActivity(intent);
+                    Intent intent =new Intent(GoodsListActivity.this,GoodsInfoActivity.class);
+                    intent.putExtra("id",list.get(position).getId());
+                    startActivity(intent);
                 }
             });
 
@@ -133,13 +134,13 @@ public class GoodsListActivity extends Activity {
             return list.size();
         }
 
-        class Myholder extends RecyclerView.ViewHolder{
+        class MyHolder extends RecyclerView.ViewHolder{
             //cate_name是标签类型的名字
             private TextView txt_goodsname,txt_before_price,txt_after_price,txt_discount,txt_cate_name;
             private ImageView img_firfrag_goods;
 
 
-            public Myholder(View itemView) {
+            public MyHolder(View itemView) {
                 super(itemView);
                 txt_goodsname= (TextView) itemView.findViewById(R.id.txt_firfrag_goodsname);
                 txt_before_price= (TextView) itemView.findViewById(R.id.txt_firfrag_before_price);
