@@ -113,19 +113,23 @@
                     android:layout_toRightOf="@id/txt_goodsinfo_after_price"
                     android:layout_height="wrap_content"/>
                 <View
-                    android:layout_width="40dp"
+                    android:id="@+id/view_line"
+                    android:layout_width="wrap_content"
                     android:background="#b4b0b0"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="25dp"
                     android:layout_toRightOf="@id/txt_goodsinfo_after_price"
                     android:layout_centerVertical="true"
+                    android:layout_alignRight="@id/txt_goodsinfo_before_price"
                     android:layout_height="1dp"/>
                 <TextView
                     android:id="@+id/txt_goodsinfo_discount"
                     android:layout_width="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
+                    android:background="@drawable/shape_leaf"
                     android:textColor="#f00"
+                    android:padding="5dp"
                     android:layout_alignTop="@id/txt_goodsinfo_after_price"
                     android:layout_alignBottom="@id/txt_goodsinfo_after_price"
                     android:layout_height="wrap_content"/>
@@ -180,12 +184,19 @@
                 android:layout_width="match_parent"
                 android:background="#fff"
                 android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txt_pingjia"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="暂无评价"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"/>
 
                 <ImageView
                     android:id="@+id/img_user_icon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:src="@mipmap/mine"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="30dp"/>
                 <TextView
                     android:id="@+id/txt_comment_user"
                     android:layout_width="wrap_content"

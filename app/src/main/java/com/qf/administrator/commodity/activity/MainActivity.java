@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.qf.administrator.commodity.CircleImageView;
+import com.qf.administrator.commodity.myview.CircleImageView;
 import com.qf.administrator.commodity.R;
 import com.qf.administrator.commodity.fragment.BuyshowFragment;
 import com.qf.administrator.commodity.fragment.CategoryFragment;

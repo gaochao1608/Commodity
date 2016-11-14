@@ -5,13 +5,26 @@
     android:id="@+id/activity_more_goods"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.qf.administrator.commodity.activity.MoreGoodsActivity">
 
-    <android.support.design.widget.TabLayout
+    <android.support.v4.app.FragmentTabHost
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:id="@+id/tab_more"
-        android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
+        android:layout_height="match_parent">
+
+        <TabWidget
+            android:id="@+id/tabwidget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TabWidget>
+        <FrameLayout
+            android:id="@+id/fl_moregoods"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+    </android.support.v4.app.FragmentTabHost>
+
+
+
+
 
 
 </LinearLayout>

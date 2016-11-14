@@ -1,6 +1,7 @@
 package com.qf.administrator.commodity.utils;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -75,6 +76,7 @@ public class OkHttpUtils {
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Toast.makeText(activity, "网络无连接", Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -31,11 +31,11 @@ public class FindFragment extends Fragment {
     private RecyclerView rlv;
     private SwipeRefreshLayout sp;
     private MyAdapter adapter;
-    private ArrayList<Firstfragment_goods_bean.ItemsBean.DataBean> list=new ArrayList<>();
-    private String url="http://api.danpin.com/index.php?controller=home&action=main&category=&page=";
+    private ArrayList<Firstfragment_goods_bean.ItemsBean.DataBean> list = new ArrayList<>();
+    private String url = "http://api.danpin.com/index.php?controller=home&action=main&category=&page=";
     private static final String TAG = "tmd";
     private GridLayoutManager manager;
-    private int pager=1;
+    private int pager = 1;
 
     public static FindFragment newInstance() {
 
@@ -59,15 +59,26 @@ public class FindFragment extends Fragment {
         initData();
 
         initAdapter();
+        sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                list.clear();
+                Log.i(TAG, "onRefresh: " + list);
+                pager = 1;
+                initData();
+                Log.i(TAG, "onRefresh: " + pager);
+                adapter.notifyDataSetChanged();
+                sp.setRefreshing(false);
+            }
+        });
 
         rlv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             public int lastvisitemposition;
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                sp.setColorSchemeColors(Color.RED,Color.GREEN,Color.BLUE);
-                if (newState==RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition+1==adapter.getItemCount()){
+                sp.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastvisitemposition + 1 == adapter.getItemCount()) {
                     pager++;
                     initData();
                     adapter.notifyDataSetChanged();
@@ -75,45 +86,28 @@ public class FindFragment extends Fragment {
                 if (list.size()==0){
                     Toast.makeText(getContext(), "网络无连接", Toast.LENGTH_SHORT).show();
                     sp.setRefreshing(false);
-                }else {
-                    if (newState==RecyclerView.SCROLL_STATE_IDLE &&list.get(manager.findFirstVisibleItemPosition()).getId()==list.get(0).getId()){
-                      sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                          @Override
-                          public void onRefresh() {
-                              sp.setRefreshing(true);
-                              list.clear();
-                              Log.i(TAG, "onRefresh: "+list);
-                              pager=1;
-                              initData();
-                              Log.i(TAG, "onRefresh: "+pager);
-                              adapter.notifyDataSetChanged();
-                              sp.setRefreshing(false);
-                          }
-                      });
-                    }
-
                 }
 
-            }
 
+            }
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                lastvisitemposition=manager.findLastVisibleItemPosition();
+                lastvisitemposition = manager.findLastVisibleItemPosition();
             }
         });
     }
 
     private void initView(View view) {
-        rlv= (RecyclerView) view.findViewById(R.id.rlv_firstfrag);
+        rlv = (RecyclerView) view.findViewById(R.id.rlv_firstfrag);
         sp = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
 
     }
 
     private void initAdapter() {
-         manager=new GridLayoutManager(getContext(),2);
+        manager = new GridLayoutManager(getContext(), 2);
         rlv.setLayoutManager(manager);
-        adapter=new MyAdapter();
+        adapter = new MyAdapter();
         rlv.setAdapter(adapter);
 
     }
@@ -125,7 +119,7 @@ public class FindFragment extends Fragment {
             public void getText(Firstfragment_goods_bean result) {
                 for (int i = 0; i < 9; i++) {
                     list.addAll(result.getItems().get(i).getData());
-                    Log.i(TAG, "getText: "+list);
+                    Log.i(TAG, "getText: " + list);
 
                 }
                 adapter.notifyDataSetChanged();
@@ -134,27 +128,32 @@ public class FindFragment extends Fragment {
 
     }
 
-    class MyAdapter extends RecyclerView.Adapter<MyAdapter.Myholder>{
+    class MyAdapter extends RecyclerView.Adapter<MyAdapter.Myholder> {
 
 
         @Override
         public Myholder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new Myholder(LayoutInflater.from(getContext()).inflate(R.layout.frag_find_item,parent,false));
+            return new Myholder(LayoutInflater.from(getContext()).inflate(R.layout.frag_find_item, parent, false));
         }
 
         @Override
         public void onBindViewHolder(Myholder holder, final int position) {
             holder.txt_goodsname.setText(list.get(position).getTitle());
-            holder.txt_after_price.setText(list.get(position).getCurrency()+list.get(position).getPrice());
-            holder.txt_before_price.setText(list.get(position).getCurrency()+list.get(position).getLabelPrice());
+            holder.txt_after_price.setText(list.get(position).getCurrency() + list.get(position).getPrice());
+            holder.txt_before_price.setText(list.get(position).getCurrency() + list.get(position).getLabelPrice());
+            if (list.get(position).getDiscount()==""){
+                holder.txt_discount.setVisibility(View.GONE);
+            }else {
             holder.txt_discount.setText(list.get(position).getDiscount());
+
+            }
             holder.txt_cate_name.setText(list.get(position).getCate_name());
             Glide.with(getActivity()).load(list.get(position).getImgUrl()).into(holder.img_firfrag_goods);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent =new Intent(getContext(),GoodsInfoActivity.class);
-                    intent.putExtra("id",list.get(position).getId());
+                    Intent intent = new Intent(getContext(), GoodsInfoActivity.class);
+                    intent.putExtra("id", list.get(position).getId());
                     startActivity(intent);
                 }
             });
@@ -166,20 +165,20 @@ public class FindFragment extends Fragment {
             return list.size();
         }
 
-        class Myholder extends RecyclerView.ViewHolder{
+        class Myholder extends RecyclerView.ViewHolder {
             //cate_name是标签类型的名字
-            private TextView txt_goodsname,txt_before_price,txt_after_price,txt_discount,txt_cate_name;
+            private TextView txt_goodsname, txt_before_price, txt_after_price, txt_discount, txt_cate_name;
             private ImageView img_firfrag_goods;
 
 
             public Myholder(View itemView) {
                 super(itemView);
-                txt_goodsname= (TextView) itemView.findViewById(R.id.txt_firfrag_goodsname);
-                txt_before_price= (TextView) itemView.findViewById(R.id.txt_firfrag_before_price);
-                txt_after_price= (TextView) itemView.findViewById(R.id.txt_firfrag_after_price);
-                txt_discount= (TextView) itemView.findViewById(R.id.txt_firfrag_discount);
-                txt_cate_name= (TextView) itemView.findViewById(R.id.txt_firfrag_cate_name);
-                img_firfrag_goods= (ImageView) itemView.findViewById(R.id.img_firfrag_goods);
+                txt_goodsname = (TextView) itemView.findViewById(R.id.txt_firfrag_goodsname);
+                txt_before_price = (TextView) itemView.findViewById(R.id.txt_firfrag_before_price);
+                txt_after_price = (TextView) itemView.findViewById(R.id.txt_firfrag_after_price);
+                txt_discount = (TextView) itemView.findViewById(R.id.txt_firfrag_discount);
+                txt_cate_name = (TextView) itemView.findViewById(R.id.txt_firfrag_cate_name);
+                img_firfrag_goods = (ImageView) itemView.findViewById(R.id.img_firfrag_goods);
             }
         }
     }
