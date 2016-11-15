@@ -42,20 +42,22 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         manager = getSupportFragmentManager();
         initView();
+        initTab();
+        initFragment();
 
         mSearchBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!mSvBar.getText().toString().equals("")){
                     k = mSvBar.getText().toString();
+                    list.clear();
+                    initFragment();
                 }else {
                     Toast.makeText(SearchActivity.this, "输入搜索", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
-        initFragment();
-        manager.beginTransaction().add(R.id.tab_fragment,list.get(0)).commit();
         mTabTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             //当标签被选中后运行此方法
             @Override
@@ -104,17 +106,21 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    private void initFragment() {
+    private void initTab() {
         viewPrice = LayoutInflater.from(SearchActivity.this).inflate(R.layout.item_price, null);
 
         mTabTab.addTab(mTabTab.newTab().setText("相关").setTag(0));
         mTabTab.addTab(mTabTab.newTab().setText("折扣").setTag(1));
         mTabTab.addTab(mTabTab.newTab().setCustomView(viewPrice).setTag(2));
+    }
+
+    private void initFragment() {
 
         list.add(SearchListFragment.newInstance(k,"","-1"));
         list.add(SearchListFragment.newInstance(k,"discount","-1"));
         list.add(SearchListFragment.newInstance(k,"price","0"));
         list.add(SearchListFragment.newInstance(k,"price","1"));
+        manager.beginTransaction().replace(R.id.tab_fragment,list.get(0)).commit();
 
     }
 

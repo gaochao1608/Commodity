@@ -158,6 +158,7 @@ public class CategoryFragment extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), GoodsListActivity.class);
                     intent.putExtra("id",list.get(position).getSub().get(i).getCate_id());
+                    intent.putExtra("title",list.get(position).getSub().get(i).getCate_name());
                     startActivity(intent);
                 }
             });

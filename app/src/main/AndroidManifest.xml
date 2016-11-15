@@ -198,15 +198,20 @@
 
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+        <activity android:name=".activity.RegisterActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
         <activity android:name=".activity.PointActivity"/>
-        <activity android:name=".activity.RegisterActivity"/>
+
         <activity
-            android:name=".activity.EmptyActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".activity.GoodsListActivity"/>
-        <activity android:name=".activity.BuyShowActivity"/>
-        <activity android:name=".activity.SearchActivity"/>
+            android:name=".activity.EmptyActivity"/>
+        <activity android:name=".activity.GoodsListActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+        <activity android:name=".activity.BuyShowActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+        <activity android:name=".activity.SearchActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
 
 
         <!--李开念 -->

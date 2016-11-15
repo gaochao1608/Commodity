@@ -61,7 +61,7 @@ public class BuyShowActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_show);
-        initToolBar();
+        initActionBar();
         initView();
         initData();
         initPagerData();
@@ -85,7 +85,7 @@ public class BuyShowActivity extends AppCompatActivity implements View.OnClickLi
                 });
     }
 
-    private void initToolBar() {
+    private void initActionBar() {
         ActionBar bar = getSupportActionBar();
         bar.setTitle("晒单详情");
         bar.setHomeButtonEnabled(true);
