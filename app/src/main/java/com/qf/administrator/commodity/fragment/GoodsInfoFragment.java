@@ -140,7 +140,7 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
 
             @Override
             public void getText(final Goods_info_bean result) {
-                Log.i(TAG, "getText: " + result);
+                Log.i(TAG, "getText: " + url_goodsinfo + id);
                 iblist.addAll(result.getData().getRelated_items().getItems());
                 txt_goodsinfo_goodsname.setText(result.getData().getTitle());
                 if (result.getData().getOprice()==""){
@@ -156,13 +156,12 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
                 txt_goodsinfo_discount.setText(result.getData().getDiscount());
                 }
                 txt_goodsinfo_user.setText(result.getData().getAction().getUp_down_last().getNick_name());
-                if (result.getData().getComments().size()!= 0) {
+                if (result.getData().getComments().size()!=0) {
                     txt_comment_user.setText(result.getData().getComments().get(0).getNick_name());
                     comment_time.setText(result.getData().getComments().get(0).getComment_date());
                     comment.setText(result.getData().getComments().get(0).getComment_text());
                     Glide.with(getActivity()).load(result.getData().getComments().get(0).getFace_image()).into(img_user_icon);
                 } else {
-
                     txt_pingjia.setVisibility(View.VISIBLE);
 
                 }
