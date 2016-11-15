@@ -50,6 +50,7 @@ public class SearchListFragment extends Fragment {
     private int pager;
     private LinearLayoutManager manager;
 
+
     public SearchListFragment() {
         // Required empty public constructor
     }
