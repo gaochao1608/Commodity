@@ -93,6 +93,7 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener{
         rlv_more.setAdapter(adapter);
     }
     private void iniData(int id) {
+        Log.i("tmddd", "iniData: "+url_goodsinfo + id);
         OkHttpUtils.getInstances().getByEnqueue(getActivity(), url_goodsinfo + id, Goods_info_bean.class, new OkHttpUtils.GetTextCallback<Goods_info_bean>() {
 
             @Override

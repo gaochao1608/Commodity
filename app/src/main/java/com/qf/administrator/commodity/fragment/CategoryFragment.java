@@ -97,11 +97,6 @@ public class CategoryFragment extends Fragment {
             params.height = getResources().getDisplayMetrics().heightPixels / 5;
             holder.cateBig.setLayoutParams(params);
             Glide.with(context).load(list.get(position).getPic_large()).into(holder.cateBig);
-//            for (int i = 0; i < list.get(position).getSub().size(); i++) {
-//                TextView tv = new TextView(context);
-//                tv.setText(list.get(position).getSub().get(i).getCate_name());
-//                holder.cateGrid.addView(tv);
-//            }
             gridAdapter = new MyGridAdapter(position);
             holder.cateGrid.setAdapter(gridAdapter);
         }

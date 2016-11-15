@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -24,12 +25,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.qf.administrator.commodity.myview.CircleImageView;
 import com.qf.administrator.commodity.R;
 import com.qf.administrator.commodity.fragment.BuyShowFragment;
 import com.qf.administrator.commodity.fragment.CategoryFragment;
 import com.qf.administrator.commodity.fragment.FindFragment;
 import com.qf.administrator.commodity.fragment.RecommendFragment;
+import com.qf.administrator.commodity.myview.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -110,7 +111,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mIvHead.setOnClickListener(this);
         mIvHead.setOnClickListener(this);
         mIvFind = (ImageView) findViewById(R.id.iv_find);
-        mIvFind.setOnClickListener(this);
+        mIvFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SearchActivity.class));
+            }
+        });
         mRlHead = (RelativeLayout) findViewById(R.id.rl_head);
         mRlHead.setOnClickListener(this);
         mBigMap = (ImageView) findViewById(R.id.big_map);
@@ -159,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mCivHead = (CircleImageView) findViewById(R.id.civ_head);
         mCivHead.setOnClickListener(this);
         mTvClick = (TextView) findViewById(R.id.tv_click);
+
         if (!pref.getString("name", "").equals("")) {
             mTvClick.setText("您已登录");
         }
@@ -306,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     break;
             }
             //隐藏
-            mActivityMain.closeDrawers();
+            mActivityMain.closeDrawer(Gravity.LEFT);
         }
 
     }
