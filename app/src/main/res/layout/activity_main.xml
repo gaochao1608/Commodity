@@ -35,9 +35,14 @@
                         android:id="@+id/iv_head"
                         android:layout_width="wrap_content"
                         android:layout_height="?attr/actionBarSize"
-                        android:scaleType="centerInside"
                         android:src="@mipmap/ic_user_photo_bg" />
-
+                    <ImageView
+                        android:id="@+id/iv_camera"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/iv_find"
+                        android:src="@mipmap/drawer_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                     <ImageView
                         android:id="@+id/iv_find"
                         android:layout_width="wrap_content"
@@ -65,6 +70,15 @@
 
             </android.support.v4.view.ViewPager>
         </android.support.design.widget.CoordinatorLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:src="@android:drawable/alert_dark_frame"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            app:backgroundTint="#fff"
+            android:id="@+id/bt_float"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

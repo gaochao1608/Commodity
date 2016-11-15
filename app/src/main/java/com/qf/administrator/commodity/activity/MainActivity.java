@@ -5,7 +5,10 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -78,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Switch mBtSwitch;
     private int i;
     private int i1;
+    private FloatingActionButton mBtFloat;
+    private ImageView mIvCamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mIvFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,SearchActivity.class));
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
             }
         });
         mRlHead = (RelativeLayout) findViewById(R.id.rl_head);
@@ -142,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtLike = (Button) findViewById(R.id.bt_like);
         mBtLike.setOnClickListener(this);
         mBtFollow = (Button) findViewById(R.id.bt_follow);
-        mBtFollow.setOnClickListener(this);
         mBtFans = (Button) findViewById(R.id.bt_fans);
         mBtFans.setOnClickListener(this);
         mLlSecond = (LinearLayout) findViewById(R.id.ll_second);
@@ -178,11 +182,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
+                if (b) {
                     JPushInterface.resumePush(MainActivity.this);
-                }else{
+                } else {
                     JPushInterface.stopPush(MainActivity.this);
                 }
+            }
+        });
+        mBtFloat = (FloatingActionButton) findViewById(R.id.bt_float);
+        mBtFloat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, InterestActivity.class));
+            }
+        });
+        mIvCamera = (ImageView) findViewById(R.id.iv_camera);
+        mIvCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
             }
         });
     }
@@ -194,6 +211,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             switch (v.getId()) {
                 case R.id.civ_head:
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("请选择：")
+                            .setItems(new String[]{"图库", "相机"}, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if(i==0){
+
+                                    }else{
+                                        Intent intent = new Intent();
+                                        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        startActivityForResult(intent, 2);
+                                    }
+                                }
+                            });
+                    builder.show();
+                    break;
                 case R.id.iv_head:
                     Toast.makeText(this, "您已登录", Toast.LENGTH_SHORT).show();
                     AlertDialog.Builder ab = new AlertDialog.Builder(this);
@@ -268,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     TimePickerDialog tpd2 = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                            MainActivity.this.i1=i;
+                            MainActivity.this.i1 = i;
                             mEndTime.setText(i + ":00--");
                         }
                     }, 8, 0, true);
@@ -277,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     TimePickerDialog tpd = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                            MainActivity.this.i=i;
+                            MainActivity.this.i = i;
                             mStartTime.setText(i + ":00");
                         }
                     }, 8, 0, true);
@@ -286,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Set<Integer> set = new HashSet<>();
                     set.add(0);
                     set.add(6);
-                    JPushInterface.setPushTime(this,set,i,i1);
+                    JPushInterface.setPushTime(this, set, i, i1);
                     break;
                 case R.id.bt_context:
 //                    Intent intent=new Intent();
@@ -316,6 +349,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mActivityMain.closeDrawer(Gravity.LEFT);
         }
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            Bundle mBundle = data.getExtras();
+            Bitmap mBitmap = (Bitmap) mBundle.get("data");
+            mCivHead.setImageBitmap(mBitmap);
+        }
     }
 
     class MyAdapter extends FragmentStatePagerAdapter {

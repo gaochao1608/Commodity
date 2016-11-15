@@ -22,6 +22,7 @@
         <EditText
             android:layout_weight="1"
             android:id="@+id/sv_bar"
+            android:hint="牛仔裤"
             android:layout_margin="10dp"
             android:padding="5dp"
             android:background="@drawable/round_white"
