@@ -61,6 +61,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
             return;
         }else {
             //TODO  将输入框得到的内容加入到数据库中
+
         }
 
 

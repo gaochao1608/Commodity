@@ -57,7 +57,8 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
     private TextView comment_time;
     private TextView comment;
     private TextView txt_content;
-    private ImageView img_goods_img,img_user_icon;
+    private ImageView img_goods_img;
+    private ImageView img_user_icon;
     private ImageView img_goods_buy;
     private RecyclerView rlv_more;
     private ScrollView sv;
@@ -69,7 +70,6 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
     private MyMoreAdapter adapter;
     private static final String TAG = "sos";
     private FragmentManager maanger;
-    private Boolean flag = true;
 
     public static GoodsInfoFragment newInstance(int id) {
         Bundle args = new Bundle();
@@ -253,8 +253,8 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
             holder.txt_goodsname.setText(iblist.get(position).getTitle());
             holder.txt_after_price.setText(iblist.get(position).getCurrency() + iblist.get(position).getPrice());
             holder.txt_before_price.setText(iblist.get(position).getCurrency() + iblist.get(position).getLabelPrice());
-            holder.txt_discount.setVisibility(View.GONE);
             holder.txt_cate_name.setText(iblist.get(position).getCate_name());
+            holder.txt_discount.setVisibility(View.GONE);
             holder.txt_comefrom.setVisibility(View.GONE);
             holder.txt_biaoqian.setVisibility(View.GONE);
             Glide.with(getActivity()).load(iblist.get(position).getImgUrl()).into(holder.img_firfrag_goods);
@@ -285,9 +285,9 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
                 txt_goodsname = (TextView) itemView.findViewById(R.id.txt_firfrag_goodsname);
                 txt_before_price = (TextView) itemView.findViewById(R.id.txt_firfrag_before_price);
                 txt_after_price = (TextView) itemView.findViewById(R.id.txt_firfrag_after_price);
-                txt_discount = (TextView) itemView.findViewById(R.id.txt_firfrag_discount);
                 txt_cate_name = (TextView) itemView.findViewById(R.id.txt_firfrag_cate_name);
                 img_firfrag_goods = (ImageView) itemView.findViewById(R.id.img_firfrag_goods);
+                txt_discount = (TextView) itemView.findViewById(R.id.txt_firfrag_discount);
                 txt_comefrom = (TextView) itemView.findViewById(R.id.txt_comefrom);
                 txt_biaoqian = (TextView) itemView.findViewById(R.id.txt_baioqian);
             }

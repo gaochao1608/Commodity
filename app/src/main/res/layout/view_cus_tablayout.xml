@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="价格"
+        android:id="@+id/txt_tab_price"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/img_tablayout_price"
+        android:layout_toRightOf="@id/txt_tab_price"
+        android:layout_alignTop="@id/txt_tab_price"
+        android:layout_alignBottom="@id/txt_tab_price"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
