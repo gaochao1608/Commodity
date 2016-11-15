@@ -4,14 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_more_goods"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_height="match_parent"
     tools:context="com.qf.administrator.commodity.activity.MoreGoodsActivity">
 
-    <android.support.design.widget.TabLayout
-        android:layout_width="match_parent"
-        android:id="@+id/tab_more"
-        android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
+
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:id="@+id/tb_moregoods"
+            android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
+        <FrameLayout
+            android:id="@+id/fl_moregoods"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+
+
+
+
 
 
 </LinearLayout>

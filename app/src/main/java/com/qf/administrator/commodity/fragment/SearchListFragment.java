@@ -1,4 +1,4 @@
-package com.qf.administrator.commodity.activity;
+package com.qf.administrator.commodity.fragment;
 
 
 import android.content.Context;
@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
+import com.qf.administrator.commodity.activity.GoodsInfoActivity;
 import com.qf.administrator.commodity.bean.SearchBean;
 
 import org.json.JSONArray;

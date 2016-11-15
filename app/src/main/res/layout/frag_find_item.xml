@@ -46,10 +46,11 @@
                 android:layout_toRightOf="@id/txt_firfrag_after_price"
                 android:layout_height="wrap_content"/>
             <View
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:background="#b4b0b0"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="25dp"
+                android:layout_alignRight="@id/txt_firfrag_before_price"
                 android:layout_toRightOf="@id/txt_firfrag_after_price"
                 android:layout_centerVertical="true"
                 android:layout_height="1dp"/>

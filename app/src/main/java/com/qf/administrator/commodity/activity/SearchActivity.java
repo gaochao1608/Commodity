@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qf.administrator.commodity.R;
+import com.qf.administrator.commodity.fragment.SearchListFragment;
 
 import java.util.ArrayList;
 

@@ -32,7 +32,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BuyShowFragment extends Fragment {
+public class BuyshowFragment extends Fragment {
     private RecyclerView rlv;
     private SwipeRefreshLayout sp;
     private MyAdapter adapter;
@@ -42,13 +42,13 @@ public class BuyShowFragment extends Fragment {
     private int pager = 0;
     private Context context;
 
-    public BuyShowFragment() {
+    public BuyshowFragment() {
         // Required empty public constructor
     }
 
-    public static BuyShowFragment newInstance() {
+    public static BuyshowFragment newInstance() {
         Bundle args = new Bundle();
-        BuyShowFragment fragment = new BuyShowFragment();
+        BuyshowFragment fragment = new BuyshowFragment();
         fragment.setArguments(args);
         return fragment;
     }
