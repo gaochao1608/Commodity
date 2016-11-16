@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed"
+
+    tools:context="com.qf.administrator.commodity.activity.PayActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_adress"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:padding="5dp"
+        android:clickable="true"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_1"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/ic_location"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="请选择收货地址"
+            android:layout_toRightOf="@id/img_1"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text=">"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:id="@+id/img_buyinfo"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/txt_buyinfo_title"
+            android:layout_toRightOf="@id/img_buyinfo"
+            android:layout_alignTop="@id/img_buyinfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/txt_buyinfo_num"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_alignBottom="@id/img_buyinfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txt_x"
+            android:layout_width="wrap_content"
+            android:text="x"
+            android:layout_toLeftOf="@id/txt_buyinfo_num"
+            android:layout_alignBottom="@id/img_buyinfo"
+            android:layout_marginRight="2dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/txt_buyinfo_price"
+            android:layout_toLeftOf="@id/txt_x"
+            android:layout_alignBottom="@id/img_buyinfo"
+            android:layout_marginRight="2dp"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:background="#fff"
+        android:layout_marginTop="1dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/a"
+            android:text="当地运费:"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:text="¥0.00"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/b"
+            android:layout_below="@id/a"
+            android:text="国际运费(0.3KG):"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_below="@id/a"
+            android:text="¥0.0"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/c"
+            android:layout_below="@id/b"
+            android:text="预收关税(多退少补):"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_below="@id/b"
+            android:text="¥0.0"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/d"
+            android:layout_below="@id/c"
+            android:text="货币转换费:"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_below="@id/c"
+            android:text="¥0.0"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/e"
+            android:layout_below="@id/d"
+            android:text="合计:"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_below="@id/d"
+           android:textColor="#f00"
+            android:id="@+id/txt_price_all"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:background="#fff"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="支付方式"
+            android:id="@+id/txt_f"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_below="@id/txt_f"
+            android:layout_marginTop="5dp"
+            android:id="@+id/zhifubao"
+            android:src="@mipmap/alipay"
+            android:layout_height="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/zhifubao"
+            android:text="支付宝"
+            android:layout_alignTop="@id/zhifubao"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_height="30dp"/>
+        <ImageView
+            android:id="@+id/rb_zhifu"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/abc_btn_radio_to_on_mtrl_015"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/zhifubao"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="总计:"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/q"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/txt_price_all_bottom"
+            android:layout_toRightOf="@id/q"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="支付"
+            android:textColor="#fff"
+            android:background="@drawable/btn_buy_select"
+            android:id="@+id/btn_pay"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

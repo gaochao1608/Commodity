@@ -28,8 +28,8 @@
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
     <!-- 蓝牙分享所需的权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -64,6 +64,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService"/>
+
                 <category android:name="com.qf.administrator.commodity"/>
             </intent-filter>
         </service>
@@ -76,7 +77,6 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"/>
 
                 <category android:name="com.qf.administrator.commodity"/>
-
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT"/>
@@ -88,7 +88,6 @@
                 <action android:name="android.intent.action.PACKAGE_REMOVED"/>
 
                 <data android:scheme="package"/>
-
             </intent-filter>
         </receiver>
         <!-- Required SDK核心功能 -->
@@ -101,7 +100,6 @@
 
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="com.qf.administrator.commodity"/>
-
             </intent-filter>
         </activity>
         <!-- Required SDK核心功能 -->
@@ -120,7 +118,7 @@
             <intent-filter>
 
                 <!-- Required 用户注册SDK的intent -->
-                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.REGISTRATION"/>
                 <!-- Required 用户接收SDK消息的intent -->
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
                 <!-- Required 用户接收SDK通知栏信息的intent -->
@@ -164,7 +162,7 @@
 
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/noAB" />
+            android:theme="@style/noAB"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -193,44 +191,44 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <!-- 李开念 -->
 
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/GcStyle" />
+            android:theme="@style/GcStyle"/>
         <activity
             android:name=".activity.RegisterActivity"
-            android:theme="@style/GcStyle" />
-        <activity android:name=".activity.PointActivity" />
-        <activity android:name=".activity.EmptyActivity" />
+            android:theme="@style/GcStyle"/>
+        <activity android:name=".activity.PointActivity"/>
+        <activity android:name=".activity.EmptyActivity"/>
         <activity
             android:name=".activity.GoodsListActivity"
-            android:theme="@style/GcStyle" />
+            android:theme="@style/GcStyle"/>
         <activity
             android:name=".activity.BuyShowActivity"
-            android:theme="@style/GcStyle" />
+            android:theme="@style/GcStyle"/>
         <activity
             android:name=".activity.SearchActivity"
-            android:theme="@style/noAB" />
-        <activity android:name=".activity.InterestActivity"
-            android:theme="@style/noAB"></activity>
+            android:theme="@style/noAB"/>
+        <activity
+            android:name=".activity.InterestActivity"
+            android:theme="@style/noAB"/>
 
         <!-- 李开念 -->
 
 
-
-        <!--高超-->
+        <!-- 高超 -->
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.GoodsInfoActivity"
             android:theme="@style/GcStyle"/>
-
         <activity
             android:name=".activity.MoreGoodsActivity"
             android:theme="@style/GcStyle">
@@ -247,11 +245,16 @@
             android:name=".activity.RecommendGoodsInfoActivity"
             android:theme="@style/GcStyle">
         </activity>
-        <activity android:name=".activity.RecommendBuyGoodsActivity"
-                  android:theme="@style/GcStyle">
+        <activity
+            android:name=".activity.RecommendBuyGoodsActivity"
+            android:theme="@style/GcStyle">
             >
         </activity>
-        <!--高超-->
+        <activity android:name=".activity.PayActivity"
+                  android:theme="@style/GcStyle"
+            >
+        </activity>
+        <!-- 高超 -->
     </application>
 
 </manifest>

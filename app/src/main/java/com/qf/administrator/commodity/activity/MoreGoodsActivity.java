@@ -43,7 +43,6 @@ public class MoreGoodsActivity extends AppCompatActivity {
         mBar.setDisplayHomeAsUpEnabled(true);
 //        mManager.beginTransaction().add(R.id.fl_moregoods, MoreGoodsFragment.newInstance(brand_id)).commit();
         initFragments();
-        //TODO  导航栏的实现
         final View view= LayoutInflater.from(this).inflate(R.layout.view_cus_tablayout,null);
         tb.addTab(tb.newTab().setText("相关").setTag(0));
         tb.addTab(tb.newTab().setText("折扣").setTag(1));

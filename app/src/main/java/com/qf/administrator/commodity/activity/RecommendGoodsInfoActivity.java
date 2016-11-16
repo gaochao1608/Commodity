@@ -85,6 +85,7 @@ public class RecommendGoodsInfoActivity extends AppCompatActivity implements Vie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_recfrag_comment:
+                //TODO 评论列表的处理
 
                 break;
             case R.id.img_recfrag_share:

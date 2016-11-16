@@ -1,6 +1,7 @@
 package com.qf.administrator.commodity.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,13 +9,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +28,7 @@ import com.qf.administrator.commodity.R;
 import com.qf.administrator.commodity.activity.CommentActivity;
 import com.qf.administrator.commodity.activity.CommentCaiActivity;
 import com.qf.administrator.commodity.activity.MoreGoodsActivity;
+import com.qf.administrator.commodity.activity.PayActivity;
 import com.qf.administrator.commodity.bean.Goods_info_bean;
 import com.qf.administrator.commodity.utils.OkHttpUtils;
 
@@ -63,6 +68,7 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
     private RecyclerView rlv_more;
     private ScrollView sv;
     private View line;
+    private PopupWindow pw;
 
     private TextView txt_brand_title;
     private ImageView img_scroll;
@@ -70,6 +76,9 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
     private MyMoreAdapter adapter;
     private static final String TAG = "sos";
     private FragmentManager maanger;
+
+    //记录传进来图片的网址，商品信息等
+    private String record_img,record_txt_choose,record_txt_price,record_txt_guige;
 
     public static GoodsInfoFragment newInstance(int id) {
         Bundle args = new Bundle();
@@ -193,6 +202,13 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
                 });
 
 
+                //记录数据传给popwindow使用
+                record_img=result.getData().getShare().getImg();
+                record_txt_choose=result.getData().getTitle();
+                record_txt_guige=result.getData().getTitle();
+                record_txt_price=result.getData().getPrice();
+
+
             }
         });
     }
@@ -235,6 +251,121 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_buyonce:
+                 TextView txt_pop_choose;
+                 final TextView txt_pop_price;
+                 final TextView txt_pop_nokucun;
+                 ImageView img_pop_close;
+                 TextView txt_pop_guige;
+                 final TextView txt_pop_reduce;
+                 final TextView txt_pop_num;
+                 final TextView txt_pop_add;
+                 ImageView img_pop_goods;
+                final Button btn_pop_buy;
+                v=LayoutInflater.from(getContext()).inflate(R.layout.popwindow_buy,null);
+                pw=new PopupWindow(v, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT,true);
+                pw.setFocusable(false);
+                pw.showAtLocation(v, Gravity.CENTER,0,0);
+                txt_pop_choose= (TextView) v.findViewById(R.id.txt_pop_choose);
+                txt_pop_price= (TextView) v.findViewById(R.id.txt_pop_price);
+                txt_pop_nokucun= (TextView) v.findViewById(R.id.txt_pop_nokucun);
+                txt_pop_guige= (TextView) v.findViewById(R.id.txt_pop_guige);
+                txt_pop_reduce= (TextView) v.findViewById(R.id.txt_pop_reduce);
+                txt_pop_num= (TextView) v.findViewById(R.id.txt_pop_num);
+                txt_pop_add= (TextView) v.findViewById(R.id.txt_pop_add);
+                img_pop_close= (ImageView) v.findViewById(R.id.img_pop_close);
+                img_pop_goods= (ImageView) v.findViewById(R.id.img_pop_goods);
+                btn_pop_buy= (Button) v.findViewById(R.id.btn_pop_buy);
+
+                Glide.with(getActivity()).load(record_img).into(img_pop_goods);
+                txt_pop_choose.setText("已选:"+"\""+record_txt_choose+"\"");
+                txt_pop_price.setText(record_txt_price);
+                txt_pop_guige.setText(record_txt_guige);
+                btn_pop_buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent =new Intent(getActivity(), PayActivity.class);
+                        intent.putExtra("record_img",record_img);
+                        intent.putExtra("record_txt_choose",record_txt_choose);
+                        intent.putExtra("record_txt_price",record_txt_price);
+                        intent.putExtra("record_txt_all_price",record_txt_price);
+                        intent.putExtra("num", 1);
+                        startActivity(intent);
+
+                    }
+                });
+
+                txt_pop_reduce.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                           int num= Integer.parseInt(txt_pop_num.getText().toString());
+                             num=num-1;
+                            if (num>0){
+                                txt_pop_price.setText(txt_pop_price.getText().toString().substring(0,1)+(Integer.parseInt(record_txt_price.substring(1))*num));
+                                txt_pop_num.setText(num+"");
+                        }
+                        if (num==0){
+                                txt_pop_nokucun.setVisibility(View.VISIBLE);
+                                txt_pop_price.setVisibility(View.GONE);
+                                txt_pop_num.setText(num+"");
+                                btn_pop_buy.setText("库存不足");
+                                btn_pop_buy.setBackgroundColor(Color.GRAY);
+                                btn_pop_buy.setEnabled(false);
+                            }
+
+
+                    }
+
+                });
+                txt_pop_add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (Integer.parseInt(txt_pop_num.getText().toString())<10){
+                            txt_pop_nokucun.setVisibility(View.GONE);
+                            txt_pop_price.setVisibility(View.VISIBLE);
+//                            txt_pop_price.setText(record_txt_price);
+                            int num=Integer.parseInt(txt_pop_num.getText().toString());
+                            num+=1;
+                            txt_pop_num.setText(num+"");
+                            txt_pop_price.setText(txt_pop_price.getText().toString().substring(0,1)+(Integer.parseInt(record_txt_price.substring(1))*num));
+                            Log.i(TAG, "onClick: ==============="+num);
+                            btn_pop_buy.setEnabled(true);
+                            btn_pop_buy.setText("立即购买");
+                            btn_pop_buy.setBackgroundColor(Color.RED);
+                            final int finalNum = num;
+                            btn_pop_buy.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent =new Intent(getActivity(), PayActivity.class);
+                                    intent.putExtra("record_img",record_img);
+                                    intent.putExtra("record_txt_choose",record_txt_choose);
+                                    intent.putExtra("record_txt_price",record_txt_price);
+                                    intent.putExtra("record_txt_all_price",txt_pop_price.getText());
+                                    intent.putExtra("num", finalNum);
+                                    startActivity(intent);
+
+                                }
+                            });
+                        }else {
+                            Toast.makeText(getActivity(), "最多一次性买10件哦~", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+
+
+                img_pop_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (pw.isShowing()){
+                            pw.dismiss();
+                        }
+                    }
+                });
+
+
+
 
                 break;
 
@@ -258,6 +389,7 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
             holder.txt_comefrom.setVisibility(View.GONE);
             holder.txt_biaoqian.setVisibility(View.GONE);
             Glide.with(getActivity()).load(iblist.get(position).getImgUrl()).into(holder.img_firfrag_goods);
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
