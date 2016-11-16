@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
@@ -69,15 +68,6 @@ public class RecommendFragment extends Fragment {
 
         initAdapter();
         srfl.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE);
-        srfl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mList.clear();
-                srfl.setRefreshing(true);
-                initData();
-                srfl.setRefreshing(false);
-            }
-        });
         rlv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -87,11 +77,6 @@ public class RecommendFragment extends Fragment {
                     initData();
                     adapter.notifyDataSetChanged();
                 }
-                if (mList.size() == 0) {
-                    Toast.makeText(getContext(), "网络无连接", Toast.LENGTH_SHORT).show();
-                    srfl.setRefreshing(false);
-                } else {
-                        if (newState == RecyclerView.SCROLL_STATE_IDLE && mList.get(manager.findFirstVisibleItemPosition()).getId() == mList.get(0).getId()) {
                             srfl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                             @Override
                             public void onRefresh() {
@@ -104,10 +89,6 @@ public class RecommendFragment extends Fragment {
                             }
                         });
                     }
-
-                }
-            }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);

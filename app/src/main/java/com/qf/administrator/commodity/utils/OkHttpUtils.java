@@ -78,9 +78,14 @@ public class OkHttpUtils {
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Toast.makeText(activity, "网络无连接", Toast.LENGTH_SHORT).show();
-            }
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                 Toast.makeText(activity, "网络无连接", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
+            }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 

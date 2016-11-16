@@ -217,32 +217,24 @@
             android:theme="@style/noAB"></activity>
 
         <!-- 李开念 -->
+
+
+
+        <!--高超-->
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.GoodsInfoActivity"
             android:theme="@style/GcStyle"/>
-        <activity
-            android:name=".activity.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".activity.PointActivity"/>
-        <activity android:name=".activity.RegisterActivity"/>
-        <activity
-            android:name=".activity.EmptyActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
         <activity
             android:name=".activity.MoreGoodsActivity"
             android:theme="@style/GcStyle">
         </activity>
-        <activity android:name=".activity.GoodsListActivity"/>
-        <activity
-            android:name=".activity.BuyShowActivity"
-            android:theme="@style/GcStyle"/>
         <activity
             android:name=".activity.CommentActivity"
             android:theme="@style/GcStyle">
@@ -259,6 +251,7 @@
                   android:theme="@style/GcStyle">
             >
         </activity>
+        <!--高超-->
     </application>
 
 </manifest>
