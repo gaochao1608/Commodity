@@ -9,6 +9,12 @@
     </style>
     <style name="GcStyle" parent="Theme.AppCompat.Light.DarkActionBar">
         <!--设置系统状态栏是否支持透明效果-->
+        <item name="colorPrimary">#000</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+    <style name="noAB" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--无actionbar-->
         <item name="android:windowTranslucentStatus">false</item>
         <item name="colorPrimary">#000</item>
         <item name="android:windowTranslucentNavigation">false</item>

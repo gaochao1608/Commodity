@@ -9,14 +9,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.CoordinatorLayout
             android:id="@+id/cool"
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -32,9 +35,14 @@
                         android:id="@+id/iv_head"
                         android:layout_width="wrap_content"
                         android:layout_height="?attr/actionBarSize"
-                        android:scaleType="centerInside"
                         android:src="@mipmap/ic_user_photo_bg" />
-
+                    <ImageView
+                        android:id="@+id/iv_camera"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/iv_find"
+                        android:src="@mipmap/drawer_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                     <ImageView
                         android:id="@+id/iv_find"
                         android:layout_width="wrap_content"
@@ -53,15 +61,24 @@
                     app:tabTextColor="#ffffff" />
             </android.support.design.widget.AppBarLayout>
 
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/cool"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/cool">
-        </android.support.v4.view.ViewPager>
+            </android.support.v4.view.ViewPager>
         </android.support.design.widget.CoordinatorLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:src="@android:drawable/alert_dark_frame"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            app:backgroundTint="#fff"
+            android:id="@+id/bt_float"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

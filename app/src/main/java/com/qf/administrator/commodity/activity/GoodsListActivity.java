@@ -1,14 +1,16 @@
 package com.qf.administrator.commodity.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,7 +23,7 @@ import com.qf.administrator.commodity.utils.OkHttpUtils;
 
 import java.util.ArrayList;
 
-public class GoodsListActivity extends Activity {
+public class GoodsListActivity extends AppCompatActivity {
 
     private RecyclerView rlv;
     private SwipeRefreshLayout sp;
@@ -35,6 +37,7 @@ public class GoodsListActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initActionBar();
         setContentView(R.layout.fragment_find);
         String id = getIntent().getStringExtra("id");
         url = url+id+"&page=";
@@ -53,6 +56,7 @@ public class GoodsListActivity extends Activity {
                 sp.setRefreshing(false);
             }
         });
+
 
         rlv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             public int lastvisitemposition;
@@ -74,6 +78,19 @@ public class GoodsListActivity extends Activity {
         });
     }
 
+    private void initActionBar() {
+        ActionBar bar = getSupportActionBar();
+        bar.setTitle(getIntent().getStringExtra("title"));
+        bar.setHomeButtonEnabled(true);
+        bar.setDisplayHomeAsUpEnabled(true);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void initView() {
         rlv = (RecyclerView) findViewById(R.id.rlv_firstfrag);
         sp = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);

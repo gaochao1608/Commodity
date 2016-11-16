@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_search"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qf.administrator.commodity.activity.SearchActivity">
+    <LinearLayout
+        android:background="#000"
+        android:gravity="center"
+        android:id="@+id/ll_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/ic_richpush_actionbar_back"
+            android:id="@+id/iv_bar"/>
+        <EditText
+            android:layout_weight="1"
+            android:id="@+id/sv_bar"
+            android:hint="牛仔裤"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="@drawable/round_white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+        </EditText>
+        <TextView
+            android:text="搜索"
+            android:id="@+id/search_bar"
+            android:layout_margin="5dp"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:background="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <android.support.design.widget.TabLayout
+        android:layout_below="@+id/ll_bar"
+        android:id="@+id/tab_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.design.widget.TabLayout>
+    <FrameLayout
+        android:layout_below="@+id/tab_tab"
+        android:id="@+id/tab_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+
+</RelativeLayout>
