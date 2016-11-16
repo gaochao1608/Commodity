@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
@@ -59,19 +58,6 @@ public class FindFragment extends Fragment {
         initData();
 
         initAdapter();
-        sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                list.clear();
-                Log.i(TAG, "onRefresh: " + list);
-                pager = 1;
-                initData();
-                Log.i(TAG, "onRefresh: " + pager);
-                adapter.notifyDataSetChanged();
-                sp.setRefreshing(false);
-            }
-        });
-
         rlv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             public int lastvisitemposition;
 
@@ -84,11 +70,6 @@ public class FindFragment extends Fragment {
                     initData();
                     adapter.notifyDataSetChanged();
                 }
-                if (list.size() == 0) {
-                    Toast.makeText(getContext(), "网络无连接", Toast.LENGTH_SHORT).show();
-                    sp.setRefreshing(false);
-                } else {
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE && list.get(manager.findFirstVisibleItemPosition()).getId() == list.get(0).getId()) {
                         sp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                             @Override
                             public void onRefresh() {
@@ -104,9 +85,6 @@ public class FindFragment extends Fragment {
                         });
                     }
 
-                }
-
-            }
 
 
             @Override

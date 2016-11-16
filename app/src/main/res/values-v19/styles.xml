@@ -16,6 +16,7 @@
     <style name="noAB" parent="Theme.AppCompat.Light.NoActionBar">
         <!--无actionbar-->
         <item name="android:windowTranslucentStatus">false</item>
+        <item name="colorPrimary">#000</item>
         <item name="android:windowTranslucentNavigation">false</item>
     </style>
 

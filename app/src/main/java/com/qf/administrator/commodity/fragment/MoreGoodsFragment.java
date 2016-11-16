@@ -75,7 +75,7 @@ public class MoreGoodsFragment extends Fragment {
         String s =getArguments().getString("brand_id");
         String order =getArguments().getString("order");
         String sort =getArguments().getString("sort");
-        Log.i("sss", "initData: "+order);
+
         OkHttpUtils.getInstances().getByEnqueue(getActivity(), brand_url + s + brand_after_url+order+brand_last_url+sort, MoreGoodsBean.class, new OkHttpUtils.GetTextCallback<MoreGoodsBean>() {
 
             @Override

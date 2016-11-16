@@ -1,6 +1,7 @@
 package com.qf.administrator.commodity.utils;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -16,6 +17,7 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * Created by 高超 on 2016/10/31.
@@ -76,12 +78,23 @@ public class OkHttpUtils {
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Toast.makeText(activity, "网络无连接", Toast.LENGTH_SHORT).show();
-            }
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                 Toast.makeText(activity, "网络无连接", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
+            }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final  T gc = new Gson().fromJson(response.body().string(),clazz);
+
+                ResponseBody rb = response.body();
+                Log.i("tmd", "onResponse:1111 rb"
+                        +rb+"  "+rb.contentLength());
+                String s = rb.string();
+                Log.i("tmd", "onResponse: 222  "+s);
+                final  T gc = new Gson().fromJson(s,clazz);
 
                 activity.runOnUiThread(new Runnable() {
                     @Override

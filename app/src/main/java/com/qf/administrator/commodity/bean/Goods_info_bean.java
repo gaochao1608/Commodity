@@ -56,7 +56,7 @@ public class Goods_info_bean {
      * need_refresh : 0
      * is_love : 0
      * buy_flow_pic : http://shopstyleimg.b0.upaiyun.com/static/liucheng0.jpg
-     * comments : [{"comment_id":"29063","user_id":"81001","nick_name":"chobby","face_image":"http://mgpyh.b0.upaiyun.com/show/26c1f3f9c2e56d902bd0bceda82fdff0.jpg!avatar64","comment_date":"2016/11/07 10:13","comment_text":"苏宁易购移动端目前特价999元包邮。近期好价，需要可入~"}]
+     * commentss : [{"commenntt_id":"29063","user_id":"81001","nick_name":"chobby","face_image":"http://mgpyh.b0.upaiyun.com/show/26c1f3f9c2e56d902bd0bceda82fdff0.jpg!avatar64","comment_date":"2016/11/07 10:13","comment_text":"苏宁易购移动端目前特价999元包邮。近期好价，需要可入~"}]
      * comment_count : 1
      * love_cnt : 0
      * action : {"up_down":{"up":"0","down":"1","total":-1,"status":0},"up_down_last":{"user_id":"30886","value":"2","nick_name":"oyax","face_image":"http://mgpyh.b0.upaiyun.com/show/69aa2e4cedef96315b6c11b3e0655964.png!avatar64"}}
@@ -134,7 +134,7 @@ public class Goods_info_bean {
          * skus : [{"currency":"￥","price":1199,"型号":"P2414H","number":1}]
          */
 
-        private StockInfoBean stock_info;
+//        private StockInfoBean stock_info;
         private String category;
         private String cate_id;
         private int need_refresh;
@@ -416,13 +416,13 @@ public class Goods_info_bean {
             this.share = share;
         }
 
-        public StockInfoBean getStock_info() {
-            return stock_info;
-        }
+//        public StockInfoBean getStock_info() {
+//            return stock_info;
+//        }
 
-        public void setStock_info(StockInfoBean stock_info) {
-            this.stock_info = stock_info;
-        }
+//        public void setStock_info(StockInfoBean stock_info) {
+//            this.stock_info = stock_info;
+////        }
 
         public String getCategory() {
             return category;
@@ -551,109 +551,109 @@ public class Goods_info_bean {
             }
         }
 
-        public static class StockInfoBean {
-            private DimsBean dims;
-            private List<?> promotion;
-            /**
-             * currency : ￥
-             * price : 1199
-             * 型号 : P2414H
-             * number : 1
-             */
-
-            private List<SkusBean> skus;
-
-            public DimsBean getDims() {
-                return dims;
-            }
-
-            public void setDims(DimsBean dims) {
-                this.dims = dims;
-            }
-
-            public List<?> getPromotion() {
-                return promotion;
-            }
-
-            public void setPromotion(List<?> promotion) {
-                this.promotion = promotion;
-            }
-
-            public List<SkusBean> getSkus() {
-                return skus;
-            }
-
-            public void setSkus(List<SkusBean> skus) {
-                this.skus = skus;
-            }
-
-            public static class DimsBean {
-                /**
-                 * name : P2414H
-                 */
-
-                private List<型号Bean> 型号;
-
-                public List<型号Bean> get型号() {
-                    return 型号;
-                }
-
-                public void set型号(List<型号Bean> 型号) {
-                    this.型号 = 型号;
-                }
-
-                public static class 型号Bean {
-                    private String name;
-
-                    public String getName() {
-                        return name;
-                    }
-
-                    public void setName(String name) {
-                        this.name = name;
-                    }
-                }
-            }
-
-            public static class SkusBean {
-                private String currency;
-                private int price;
-                private String 型号;
-                private int number;
-
-                public String getCurrency() {
-                    return currency;
-                }
-
-                public void setCurrency(String currency) {
-                    this.currency = currency;
-                }
-
-                public int getPrice() {
-                    return price;
-                }
-
-                public void setPrice(int price) {
-                    this.price = price;
-                }
-
-                public String get型号() {
-                    return 型号;
-                }
-
-                public void set型号(String 型号) {
-                    this.型号 = 型号;
-                }
-
-                public int getNumber() {
-                    return number;
-                }
-
-                public void setNumber(int number) {
-                    this.number = number;
-                }
-            }
-        }
+//        public static class StockInfoBean {
+//            private DimsBean dims;
+////            private List<?> promotion;
+//            /**
+//             * currency : ￥
+//             * price : 1199
+//             * 型号 : P2414H
+//             * number : 1
+//             */
+//
+//            private List<SkusBean> skus;
+//
+//            public DimsBean getDims() {
+//                return dims;
+//            }
+//
+//            public void setDims(DimsBean dims) {
+//                this.dims = dims;
+//            }
+//
+////            public List<?> getPromotion() {
+////                return promotion;
+////            }
+////
+////            public void setPromotion(List<?> promotion) {
+////                this.promotion = promotion;
+////            }
+//
+//            public List<SkusBean> getSkus() {
+//                return skus;
+//            }
+//
+//            public void setSkus(List<SkusBean> skus) {
+//                this.skus = skus;
+//            }
+//
+//            public static class DimsBean {
+//                /**
+//                 * name : P2414H
+//                 */
+//
+//                private List<型号Bean> 型号;
+//
+//                public List<型号Bean> get型号() {
+//                    return 型号;
+//                }
+//
+//                public void set型号(List<型号Bean> 型号) {
+//                    this.型号 = 型号;
+//                }
+//
+//                public static class 型号Bean {
+//                    private String name;
+//
+//                    public String getName() {
+//                        return name;
+//                    }
+//
+//                    public void setName(String name) {
+//                        this.name = name;
+//                    }
+//                }
+//            }
+//
+//            public static class SkusBean {
+//                private String currency;
+//                private int price;
+//                private String 型号;
+//                private int number;
+//
+//                public String getCurrency() {
+//                    return currency;
+//                }
+//
+//                public void setCurrency(String currency) {
+//                    this.currency = currency;
+//                }
+//
+//                public int getPrice() {
+//                    return price;
+//                }
+//
+//                public void setPrice(int price) {
+//                    this.price = price;
+//                }
+//
+//                public String get型号() {
+//                    return 型号;
+//                }
+//
+//                public void set型号(String 型号) {
+//                    this.型号 = 型号;
+//                }
+//
+//                public int getNumber() {
+//                    return number;
+//                }
+//
+//                public void setNumber(int number) {
+//                    this.number = number;
+//                }
+//            }
+//        }
 
         public static class ActionBean {
             /**
