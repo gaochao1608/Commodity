@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
@@ -27,7 +28,7 @@ public class InterestActivity extends Activity implements View.OnClickListener {
     private RecyclerView rcv;
     private MyAdapter adapter;
     private ArrayList<CategoryAll.DataBean.CategoryBean> list = new ArrayList<>();
-
+    private ArrayList<Integer> po = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,14 +79,34 @@ public class InterestActivity extends Activity implements View.OnClickListener {
         }
 
         @Override
-        public void onBindViewHolder(final MyHolder holder, int position) {
+        public void onBindViewHolder(final MyHolder holder, final int position) {
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.width = getResources().getDisplayMetrics().widthPixels/3;
+            params.height = getResources().getDisplayMetrics().widthPixels/3;
+            holder.ivInterest.setLayoutParams(params);
             Glide.with(InterestActivity.this).load(list.get(position).getPic_small()).into(holder.ivInterest);
             holder.tvInterest.setText(list.get(position).getCate_name());
-            holder.cbInterest.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            if(po.contains(position)){
+                holder.cbInterest.setChecked(true);
+            }else {
+                holder.cbInterest.setChecked(false);
+            }
+            holder.rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-//                    adapter.notifyDataSetChanged();
+                public void onClick(View view) {
+                    if(holder.cbInterest.isChecked()){
+                        holder.cbInterest.setChecked(false);
+                        holder.cbInterest.setVisibility(View.GONE);
+                        po.remove(Integer.valueOf(position));
+                    }else{
+                        if(po.size()==5){
+                            Toast.makeText(InterestActivity.this, "最多五个", Toast.LENGTH_SHORT).show();
+                        }else {
+                            holder.cbInterest.setChecked(true);
+                            holder.cbInterest.setVisibility(View.VISIBLE);
+                            po.add(position);
+                        }
+                    }
                 }
             });
         }

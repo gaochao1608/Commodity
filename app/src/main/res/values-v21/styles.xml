@@ -11,9 +11,11 @@
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="colorPrimary">#000</item>
-        <item name="android:statusBarColor">@color/dackwhite</item>
+        <item name="android:statusBarColor">@color/darkWhite</item>
     </style>
     <style name="noAB" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:colorPrimaryDark">@color/black</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>

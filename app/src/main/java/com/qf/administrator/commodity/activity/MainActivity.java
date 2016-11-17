@@ -3,10 +3,13 @@ package com.qf.administrator.commodity.activity;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
@@ -39,6 +42,7 @@ import com.qf.administrator.commodity.fragment.FindFragment;
 import com.qf.administrator.commodity.fragment.RecommendFragment;
 import com.qf.administrator.commodity.myview.CircleImageView;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -144,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initAdapter() {
         adapter = new MyAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
-        mTabLayout.setTabTextColors(getResources().getColor(R.color.white), getResources().getColor(R.color.dackwhite));
+        mTabLayout.setTabTextColors(getResources().getColor(R.color.white), getResources().getColor(R.color.darkWhite));
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -181,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtLike = (Button) findViewById(R.id.bt_like);
         mBtLike.setOnClickListener(this);
         mBtFollow = (Button) findViewById(R.id.bt_follow);
+        mBtFollow.setOnClickListener(this);
         mBtFans = (Button) findViewById(R.id.bt_fans);
         mBtFans.setOnClickListener(this);
         mLlSecond = (LinearLayout) findViewById(R.id.ll_second);
@@ -213,7 +218,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mIvHead.setOnClickListener(this);
         mIvCamera = (ImageView) findViewById(R.id.iv_camera);
         mIvCamera.setOnClickListener(this);
-        mRlHead = (Toolbar) findViewById(R.id.rl_head);
+        mRlHead = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mRlHead);
         mRlHead.setOnClickListener(this);
         mAppbar = (AppBarLayout) findViewById(R.id.appbar);
         mAppbar.setOnClickListener(this);
@@ -355,11 +361,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     if (i == 0) {
+                                        Intent intent = new Intent();
+                                        intent.setType("image/*");
+                                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                                        startActivityForResult(Intent.createChooser(intent,"选择图片"), 0);
 
                                     } else {
                                         Intent intent = new Intent();
                                         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                                        startActivityForResult(intent, 2);
+                                        startActivityForResult(intent, 1);
                                     }
                                 }
                             });
@@ -375,12 +385,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
+        Bitmap bitmap = null;
+        if (resultCode == RESULT_OK&&requestCode==1) {
             Bundle mBundle = data.getExtras();
-            Bitmap mBitmap = (Bitmap) mBundle.get("data");
-            mCivHead.setImageBitmap(mBitmap);
-            mIvHead.setImageBitmap(mBitmap);
+            bitmap = (Bitmap) mBundle.get("data");
+        }
+        if (resultCode == RESULT_OK&&requestCode == 0) {
+                Uri uri = data.getData();
+                System.out.println(uri.getPath());
+                ContentResolver cr = this.getContentResolver();
+                try {
+                    bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+
+        }
+        if(bitmap!=null){
+            mCivHead.setImageBitmap(bitmap);
+            mIvHead.setImageBitmap(bitmap);
         }
     }
 

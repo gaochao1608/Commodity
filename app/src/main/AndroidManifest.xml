@@ -200,8 +200,10 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:theme="@style/GcStyle"/>
-        <activity android:name=".activity.PointActivity"/>
-        <activity android:name=".activity.EmptyActivity"/>
+        <activity android:name=".activity.PointActivity"
+            android:theme="@style/GcStyle"/>
+        <activity android:name=".activity.EmptyActivity"
+            android:theme="@style/GcStyle"/>
         <activity
             android:name=".activity.GoodsListActivity"
             android:theme="@style/GcStyle"/>
@@ -219,7 +221,8 @@
 
 
         <!-- 高超 -->
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.SplashActivity"
+            android:theme="@style/GcStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
