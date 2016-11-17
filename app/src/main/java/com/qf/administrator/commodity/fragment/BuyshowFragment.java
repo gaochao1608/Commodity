@@ -18,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
@@ -139,7 +140,7 @@ public class BuyshowFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(MyHolder holder, int position) {
+        public void onBindViewHolder(final MyHolder holder, int position) {
             Glide.with(context).load(list.get(position).getUser().getAvatar()).into(holder.ivHead);
             holder.tvName.setText(list.get(position).getUser().getUsername());
             holder.tvMoney.setText("已认证购物金额" + list.get(position).getUser().getTotal_price() + "元");
@@ -151,6 +152,13 @@ public class BuyshowFragment extends Fragment {
             holder.gridImage.setAdapter(gridAdapter);
             holder.tvComment.setText(" "+list.get(position).getComment_count());
             holder.itemView.setTag(position);
+            holder.btAttention.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.btAttention.setText("已关注");
+                    Toast.makeText(context, "你已关注", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         @Override

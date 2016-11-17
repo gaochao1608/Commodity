@@ -121,6 +121,16 @@ public class BuyShowBean implements Serializable{
 
         private String comment_count;
         private int id;
+
+        public String getSource_url() {
+            return source_url;
+        }
+
+        public void setSource_url(String source_url) {
+            this.source_url = source_url;
+        }
+
+        private String source_url;
         private String naturaltime;
         /**
          * avatar : http://mgpyh.b0.upaiyun.com/show/2a7ff90b03ac465b460c66b7226b80b1.jpg

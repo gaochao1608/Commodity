@@ -126,7 +126,8 @@
     </ScrollView>
 
     <LinearLayout
-        android:background="#fff"
+        android:background="#222"
+        android:gravity="center"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -136,9 +137,10 @@
         <TextView
             android:id="@+id/tv_up"
             android:text=" 20"
+            android:textColor="#fff"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_up_normal"
+            android:drawableLeft="@mipmap/up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -146,29 +148,32 @@
             android:id="@+id/tv_down"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_down_normal"
+            android:textColor="#fff"
+            android:drawableLeft="@mipmap/down"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:text=" 20"
+            android:textColor="#fff"
             android:id="@+id/tv_comment"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:drawableLeft="@drawable/ic_details_share"
+            android:drawableLeft="@mipmap/comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:text=" 20"
+            android:textColor="#fff"
             android:id="@+id/tv_collect"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/details_like_normal"
+            android:drawableLeft="@mipmap/star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/btn_buy_once"
             android:layout_width="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="4"
             android:background="@drawable/btn_buy_select"
             android:text="一键购买"
             android:textColor="#fff"

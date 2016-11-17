@@ -24,34 +24,46 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <android.support.v7.widget.Toolbar
                     android:id="@+id/rl_head"
+                    style="@style/MyToolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="#000000"
                     app:layout_scrollFlags="scroll">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <ImageView
+                            android:id="@+id/iv_menu"
+                            android:layout_margin="10dp"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/hamburger_menu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <com.qf.administrator.commodity.myview.CircleImageView
+                            android:id="@+id/iv_head"
+                            android:layout_toRightOf="@+id/iv_menu"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@mipmap/ic_user_photo_bg" />
+                        <ImageView
+                            android:id="@+id/iv_camera"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/iv_find"
+                            android:src="@mipmap/cwac_cam2_ic_action_camera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:id="@+id/iv_find"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:src="@mipmap/btn_search" />
+                    </RelativeLayout>
 
-                    <com.qf.administrator.commodity.myview.CircleImageView
-                        android:id="@+id/iv_head"
-                        android:layout_width="wrap_content"
-                        android:layout_height="?attr/actionBarSize"
-                        android:src="@mipmap/ic_user_photo_bg" />
-                    <ImageView
-                        android:id="@+id/iv_camera"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/iv_find"
-                        android:src="@mipmap/drawer_camera"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <ImageView
-                        android:id="@+id/iv_find"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:src="@mipmap/btn_search" />
-
-                </RelativeLayout>
-
+                </android.support.v7.widget.Toolbar>
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
