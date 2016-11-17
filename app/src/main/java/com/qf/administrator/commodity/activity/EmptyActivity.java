@@ -1,5 +1,6 @@
 package com.qf.administrator.commodity.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +47,7 @@ public class EmptyActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.address:
-
+                startActivity(new Intent(EmptyActivity.this,AddressActivity.class));
                 break;
         }
     }

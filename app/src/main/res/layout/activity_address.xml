@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_address"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qf.administrator.commodity.activity.AddressActivity">
+    <View
+        android:background="@color/darkWhite"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_name"
+            android:text="收件人姓名："
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_name"
+            android:hint="请务必与身份证姓名一致"
+            android:layout_toRightOf="@+id/tv_name"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:background="@color/darkWhite"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_num"
+            android:text="身份证号码："
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_num"
+            android:hint="请务必正确填写"
+            android:layout_toRightOf="@+id/tv_num"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_below="@+id/tv_num"
+            android:id="@+id/tv_phone"
+            android:text="电话号码："
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_below="@+id/tv_num"
+            android:id="@+id/ed_phone"
+            android:hint="请务必正确填写"
+            android:layout_toRightOf="@+id/tv_phone"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <View
+        android:background="@color/darkWhite"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="所在地："
+            android:textSize="20sp"
+            android:id="@+id/bt_address"
+            android:drawableRight="@drawable/me_page_item_detail_icon"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/bt_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="20sp"
+            android:textColor="#f00"
+            android:id="@+id/tv_address"
+            android:layout_marginLeft="80dp"
+            android:layout_centerVertical="true"
+            android:text="上海 上海 上海"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:background="@color/darkWhite"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_deal"
+            android:text="详细地址："
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_deal"
+            android:hint="街道、门牌号"
+            android:layout_toRightOf="@+id/tv_deal"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:background="@color/darkWhite"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <RelativeLayout
+        android:layout_margin="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/front"
+            android:src="@drawable/idcard_front_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/back"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/idcard_back_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <Button
+        android:text="提交"
+        android:id="@+id/submit"
+        android:background="@color/red"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
