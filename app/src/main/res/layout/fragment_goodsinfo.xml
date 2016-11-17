@@ -61,7 +61,7 @@
 
 
     </LinearLayout>
-    <ScrollView
+    <com.qf.administrator.commodity.myview.MyScollView
         android:id="@+id/sv"
         android:layout_above="@id/ll"
         android:background="#ededed"
@@ -283,6 +283,6 @@
                     android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </com.qf.administrator.commodity.myview.MyScollView>
 
 </RelativeLayout>

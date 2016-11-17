@@ -2,6 +2,7 @@ package com.qf.administrator.commodity.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -261,9 +262,12 @@ public class GoodsInfoFragment extends Fragment implements View.OnClickListener 
                  final TextView txt_pop_add;
                  ImageView img_pop_goods;
                 final Button btn_pop_buy;
-                v=LayoutInflater.from(getContext()).inflate(R.layout.popwindow_buy,null);
+                v=LayoutInflater.from(getContext()).inflate(R.layout.popwindow_buy, null);
                 pw=new PopupWindow(v, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT,true);
-                pw.setFocusable(false);
+
+                pw.setBackgroundDrawable(new ColorDrawable());
+                pw.setOutsideTouchable(true);
+
                 pw.showAtLocation(v, Gravity.CENTER,0,0);
                 txt_pop_choose= (TextView) v.findViewById(R.id.txt_pop_choose);
                 txt_pop_price= (TextView) v.findViewById(R.id.txt_pop_price);
