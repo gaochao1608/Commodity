@@ -84,8 +84,8 @@ public class InterestActivity extends Activity implements View.OnClickListener {
             holder.cbInterest.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    compoundButton.setText("????????????");
-                    adapter.notifyDataSetChanged();
+
+//                    adapter.notifyDataSetChanged();
                 }
             });
         }

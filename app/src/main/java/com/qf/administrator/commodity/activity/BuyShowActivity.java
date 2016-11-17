@@ -1,6 +1,7 @@
 package com.qf.administrator.commodity.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qf.administrator.commodity.R;
@@ -187,12 +189,24 @@ public class BuyShowActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_attention:
-
+                Toast.makeText(this, "关注成功", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.bt_all:
-
+            case R.id.tv_up:
+                Toast.makeText(this, "你已经赞过了", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_down:
+                Toast.makeText(this, "你已经....", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_comment:
+                startActivity(new Intent(BuyShowActivity.this, CommentActivity.class));
+                break;
+            case R.id.tv_collect:
+                Toast.makeText(this, "收藏成功", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_buy_once:
+                Intent intent =new Intent(BuyShowActivity.this,RecommendBuyGoodsActivity.class);
+                intent.putExtra("source_url1",obj.getSource_url());
+                startActivity(intent);
                 break;
         }
     }

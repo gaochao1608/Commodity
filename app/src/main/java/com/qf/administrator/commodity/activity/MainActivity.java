@@ -1,5 +1,6 @@
 package com.qf.administrator.commodity.activity;
 
+
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -8,6 +9,8 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,14 +18,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -48,9 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyAdapter adapter;
     private ArrayList<Fragment> list = new ArrayList<>();
     private String[] title = {"找单品", "编辑推", "买家秀", "全品类"};
-    private CircleImageView mIvHead;
-    private ImageView mIvFind;
-    private RelativeLayout mRlHead;
     private ImageView mBigMap;
     private CircleImageView mBtHead;
     private Button mBtHome;
@@ -62,10 +63,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtCamera;
     private Button mBtComment;
     private Button mBtLike;
-    private Button mBtFollow;
     private Button mBtFans;
     private LinearLayout mLlSecond;
-    private Button mBtPush;
     private Button mBtPushTime;
     private Button mBtContext;
     private Button mBtMark;
@@ -82,7 +81,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int i;
     private int i1;
     private FloatingActionButton mBtFloat;
+    private ActionBar bar;
+    private Button mBtFollow;
+    private Button mBtPush;
+    private ImageView mIvMenu;
+    private CircleImageView mIvHead;
     private ImageView mIvCamera;
+    private ImageView mIvFind;
+    private Toolbar mRlHead;
+    private AppBarLayout mAppbar;
+    private CoordinatorLayout mCool;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +102,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         initData();
         initAdapter();
+        initListener();
+    }
+
+    private void initListener() {
+        if (!pref.getString("name", "").equals("")) {
+            mTvClick.setText("您已登录");
+        }
+
+        mBtSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    JPushInterface.resumePush(MainActivity.this);
+                } else {
+                    JPushInterface.stopPush(MainActivity.this);
+                }
+            }
+        });
+        mBtFloat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, InterestActivity.class));
+            }
+        });
+        mIvMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mActivityMain.openDrawer(Gravity.LEFT);
+            }
+        });
+
+        mIvFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            }
+        });
     }
 
     private void initAdapter() {
@@ -112,18 +158,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mIvHead = (CircleImageView) findViewById(R.id.iv_head);
-        mIvHead.setOnClickListener(this);
-        mIvHead.setOnClickListener(this);
-        mIvFind = (ImageView) findViewById(R.id.iv_find);
-        mIvFind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SearchActivity.class));
-            }
-        });
-        mRlHead = (RelativeLayout) findViewById(R.id.rl_head);
-        mRlHead.setOnClickListener(this);
         mBigMap = (ImageView) findViewById(R.id.big_map);
         mBigMap.setOnClickListener(this);
         mBtHead = (CircleImageView) findViewById(R.id.civ_head);
@@ -168,40 +202,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mActivityMain.setOnClickListener(this);
         mCivHead = (CircleImageView) findViewById(R.id.civ_head);
         mCivHead.setOnClickListener(this);
-        mTvClick = (TextView) findViewById(R.id.tv_click);
-
-        if (!pref.getString("name", "").equals("")) {
-            mTvClick.setText("您已登录");
-        }
         mStartTime = (TextView) findViewById(R.id.start_time);
         mStartTime.setOnClickListener(this);
         mEndTime = (TextView) findViewById(R.id.end_time);
         mEndTime.setOnClickListener(this);
         mBtSwitch = (Switch) findViewById(R.id.bt_switch);
         mBtSwitch.setChecked(true);
-        mBtSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    JPushInterface.resumePush(MainActivity.this);
-                } else {
-                    JPushInterface.stopPush(MainActivity.this);
-                }
-            }
-        });
         mBtFloat = (FloatingActionButton) findViewById(R.id.bt_float);
-        mBtFloat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, InterestActivity.class));
-            }
-        });
+        mIvHead = (CircleImageView) findViewById(R.id.iv_head);
+        mIvHead.setOnClickListener(this);
         mIvCamera = (ImageView) findViewById(R.id.iv_camera);
-        mIvCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+        mIvCamera.setOnClickListener(this);
+        mRlHead = (Toolbar) findViewById(R.id.rl_head);
+        mRlHead.setOnClickListener(this);
+        mAppbar = (AppBarLayout) findViewById(R.id.appbar);
+        mAppbar.setOnClickListener(this);
+        mCool = (CoordinatorLayout) findViewById(R.id.cool);
+        mCool.setOnClickListener(this);
+        mIvMenu = (ImageView) findViewById(R.id.iv_menu);
+        mTvClick = (TextView) findViewById(R.id.tv_click);
+        mIvFind = (ImageView) findViewById(R.id.iv_find);
     }
 
     @Override
@@ -210,23 +230,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         } else {
             switch (v.getId()) {
-                case R.id.civ_head:
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("请选择：")
-                            .setItems(new String[]{"图库", "相机"}, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    if(i==0){
 
-                                    }else{
-                                        Intent intent = new Intent();
-                                        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                                        startActivityForResult(intent, 2);
-                                    }
-                                }
-                            });
-                    builder.show();
-                    break;
                 case R.id.iv_head:
                     Toast.makeText(this, "您已登录", Toast.LENGTH_SHORT).show();
                     AlertDialog.Builder ab = new AlertDialog.Builder(this);
@@ -344,12 +348,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.bt_version:
                     Toast.makeText(this, "已经最新版本了", Toast.LENGTH_SHORT).show();
                     break;
+                case R.id.civ_head:
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("请选择：")
+                            .setItems(new String[]{"图库", "相机"}, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (i == 0) {
+
+                                    } else {
+                                        Intent intent = new Intent();
+                                        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        startActivityForResult(intent, 2);
+                                    }
+                                }
+                            });
+                    builder.show();
+                    break;
             }
             //隐藏
             mActivityMain.closeDrawer(Gravity.LEFT);
         }
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -358,6 +380,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Bundle mBundle = data.getExtras();
             Bitmap mBitmap = (Bitmap) mBundle.get("data");
             mCivHead.setImageBitmap(mBitmap);
+            mIvHead.setImageBitmap(mBitmap);
         }
     }
 

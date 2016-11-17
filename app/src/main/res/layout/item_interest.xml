@@ -19,7 +19,9 @@
         android:layout_height="wrap_content" />
     <CheckBox
         android:id="@+id/cb_interest"
-        android:layout_centerInParent="true"
+        android:background="@drawable/status_online"
+        android:layout_alignRight="@+id/iv_interest"
+        android:layout_alignTop="@+id/iv_interest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

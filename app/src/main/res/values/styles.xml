@@ -10,4 +10,14 @@
     <style name="GcStyle" parent="AppTheme"></style>
     <style name="noAB" parent="AppTheme"/>
 
+    <style
+        name="MyToolbar"
+
+        parent="Widget.AppCompat.Toolbar">
+
+        <item
+            name="contentInsetStart">0dp</item>
+
+    </style>
+
 </resources>
